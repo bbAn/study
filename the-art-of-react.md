@@ -1419,7 +1419,7 @@ const IterationSample = () => {
     const nextNames = names.filter(name => name.id !== id);
     setNames(nextNames);
   }
-  const namesList = names.map(name => ( // 추가 할 땐 없던 괄호가 생겼다.. 단순 코드 구분 때문인가..
+  const namesList = names.map(name => ( // 추가 할 땐 없던 괄호가 생겼다.. 단순 코드 구분 때문인가.. 괄호가 없어도 실행은 된다
     <li key={name.id} 
     	onDoubleClick={() => onRemove(name.id)}
     >
