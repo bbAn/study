@@ -990,38 +990,38 @@ import React, { Component } from "react";
 import './ValidationSample.css'
 
 class ValidationSample extends Component {
-	state = {
-		password: '',
-		clicked: false,
-		validated: false
-	}
+  state = {
+    password: '',
+    clicked: false,
+    validated: false
+  }
 
-	handleChange = (e) => {
-		this.setState({
-			password: e.target.value
-		});
-	}
+  handleChange = (e) => {
+    this.setState({
+      password: e.target.value
+    });
+  }
 
-	handleButtonClick = () => {
-		this.setState({
-			clicked: true,
-			validated: this.state.password === '000'
-		});
-	}
+  handleButtonClick = () => {
+    this.setState({
+      clicked: true,
+      validated: this.state.password === '000'
+    });
+  }
 
-	render() {
-		return (
-			<div>
-				<input
-					type="password"
-					value={this.state.password}
-					onChange={this.handleChange}
-					className={this.state.clicked ? (this.state.validated ? 'success' : 'failure') : ''} 
-				/>
-				<button onClick={this.handleButtonClick}>검증하기</button>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <input
+          type="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+          className={this.state.clicked ? (this.state.validated ? 'success' : 'failure') : ''} 
+        />
+        <button onClick={this.handleButtonClick}>검증하기</button>
+      </div>
+    );
+  }
 }
 
 export default ValidationSample;
@@ -1093,44 +1093,43 @@ class RefSample extends Component {
 export default RefSample;
 ```
    
-   
 ValidationSample.js 에 ref 적용하기
 ```JS
 class ValidationSample extends Component {
-	state = {
-		password: '',
-		clicked: false,
-		validated: false
-	}
+  state = {
+    password: '',
+    clicked: false,
+    validated: false
+  }
 
-	handleChange = (e) => {
-		this.setState({
-			password: e.target.value
-		});
-	}
+  handleChange = (e) => {
+    this.setState({
+      password: e.target.value
+    });
+  }
 
-	handleButtonClick = () => {
-		this.setState({
-			clicked: true,
-			validated: this.state.password === '000'
-		});
-		this.input.focus(); //추가됨
-	}
+  handleButtonClick = () => {
+    this.setState({
+      clicked: true,
+      validated: this.state.password === '000'
+    });
+    this.input.focus(); // 추가된 코드
+  }
 
-	render() {
-		return (
-			<div>
-				<input
-					type="password"
-					value={this.state.password}
-					onChange={this.handleChange}
-					className={this.state.clicked ? (this.state.validated ? 'success' : 'failure') : ''} 
-					ref={(ref) => this.input=ref} // 추가됨
-				/>
-				<button onClick={this.handleButtonClick}>검증하기</button>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <input
+          type="password"
+          value={this.state.password}
+          onChange={this.handleChange}
+          className={this.state.clicked ? (this.state.validated ? 'success' : 'failure') : ''} 
+          ref={(ref) => this.input=ref} // 추가된 코드
+        />
+        <button onClick={this.handleButtonClick}>검증하기</button>
+      </div>
+    );
+  }
 }
 ```
    
@@ -1143,9 +1142,11 @@ class ValidationSample extends Component {
 
 ```JS
 <MyComponent
- ref={(ref) => {this.myComponent=ref}} 
- // 컴포넌트의 내부 메서드 및 멤버 변수에도 접근할 수 있음
- // 즉, 내부의 ref에도 접근 할 수 있다 (예: myComponent.handleClick, myComponent.input 등)
+ ref={(ref) => {this.myComponent=ref}}
+ /*
+ 컴포넌트의 내부 메서드 및 멤버 변수에도 접근할 수 있음
+ 즉, 내부의 ref에도 접근 할 수 있다 (예: myComponent.handleClick, myComponent.input 등)
+ */
 />
 ```
    
@@ -1202,13 +1203,14 @@ class App extends Component {
       <div>
         <ScrollBox ref={(ref) => this.scrollBox=ref}/>
         <button onClick={() => this.scrollBox.scrollToBottom()}> 
-        // onClick = {this.scrollBox.scrollBottom}으로 작성해도 틀린 것은 아니나
-        // 컴포넌트가 처음 렌더링 될 때 this.scrollBox 값이 undefined이므로 
-        // this.scrollBox.scrollToButtom 값을 읽어 오는 과정에서 오류가 발생함
-        // 화살표 함수 문법을 사용하여 아예 새로운 함수를 만들고 내부에서 this.scrollBox.scrollToBottom 메서드를 실행하면 
-        // 버튼을 누를 때 (이미 한 번 렌더링을 해서 this.scrollBox를 설정한 시점)
-        // this.scrollBox.scrollToBottom 값을 읽어 와서 실행하므로 오류가 발생하지 않음 
-        
+	/*
+        onClick = {this.scrollBox.scrollBottom}으로 작성해도 틀린 것은 아니나
+        컴포넌트가 처음 렌더링 될 때 this.scrollBox 값이 undefined이므로 
+        this.scrollBox.scrollToButtom 값을 읽어 오는 과정에서 오류가 발생함
+        화살표 함수 문법을 사용하여 아예 새로운 함수를 만들고 내부에서 this.scrollBox.scrollToBottom 메서드를 실행하면 
+        버튼을 누를 때 (이미 한 번 렌더링을 해서 this.scrollBox를 설정한 시점)
+        this.scrollBox.scrollToBottom 값을 읽어 와서 실행하므로 오류가 발생하지 않음 
+        */
           맨 밑으로
         </button>
       </div>
@@ -1219,7 +1221,7 @@ class App extends Component {
    
 정리
 -------------
-컴포넌트 내부에서 DOM에 직접 접근해야 할 때는 ref를 사용함 
+컴포넌트 내부에서 DOM에 직접 접근해야 할 때는 ref를 사용함   
 다른 컴포넌트끼리 데이터를 교류할 때 사용하는 것은 잘못됨
    
    
