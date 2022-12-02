@@ -1419,8 +1419,10 @@ const IterationSample = () => {
     const nextNames = names.filter(name => name.id !== id);
     setNames(nextNames);
   }
-  const namesList = names.map(name => (
-    <li key={name.id} onDoubleClick={() => onRemove(name.id)}>
+  const namesList = names.map(name => ( // 추가 할 땐 없던 괄호가 생겼다.. 단순 코드 구분 때문인가..
+    <li key={name.id} 
+    	onDoubleClick={() => onRemove(name.id)}
+    >
       {name.text}
     </li>
   ));
