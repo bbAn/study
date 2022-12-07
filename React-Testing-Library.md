@@ -62,8 +62,10 @@ userEvent.click(target); //userEvent를 사용할 것을 권장
 ```
 
 ## Assertion
-요소를 렌더링하고 타겟을 얻어 특정 이벤트를 실행하면 특정 결과가 발생함
+요소를 렌더링하고 타겟을 얻어 특정 이벤트를 실행하면 특정 결과가 발생함   
 이때 expect 메서드에 타겟을 인자로 넘겨 사용할 수 있음
+
+* expect - 테스트 통과 여부를 확인하기 위한 것으로 괄호 안의 값이 어떤 조건에 만족하는지 확인
 
 ```JS
 const target = screen.getByRole('button', { name: '+' });
