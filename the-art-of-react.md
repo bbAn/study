@@ -1,16 +1,16 @@
 # 리액트를 다루는 기술
 
-2장 JSX
-=============
+## 2장 JSX
 
-리액트는 뷰만 신경쓰는 라이브러리라고 할 있음 
-프레임 워크는 Ajax, 데이터 모델링, 라우팅 등의 기능을 내장하고 있음
+리액트는 뷰만 신경쓰는 라이브러리라고 할 있음    
+프레임 워크는 Ajax, 데이터 모델링, 라우팅 등의 기능을 내장하고 있음   
 
-yarn은 npm을 대체 할 수 있는 도구로 npm보다 빠르며 효율적인 캐시 시스템과 기타 부가기능을 제공 하고 있음
+yarn은 npm을 대체 할 수 있는 도구로 npm보다 빠르며 효율적인 캐시 시스템과 기타 부가기능을 제공 하고 있음   
 
-* 리액트에서 조건문(if)사용하기
+#### 2.4.3 If 문 대신 조건부 연산자   
 JSX 내부의 자바스크립트 표현식에서 if문을 사용할 수 없지만 {} 안에 조건부 연산자, 즉 삼항 연산자를 사용할 수 있음
 
+#### 2.4.4 AND 연산자(&&)를 사용한 조건부 렌더링  
 - 특정 조건을 만족할 때 내용을 보여주고 아닐 때 아예 아무것도 렌더링 하지 않아야 할 경우
 ```js
 {name === 'react' && <h1>react!</h1> : null}
@@ -21,7 +21,7 @@ JSX 내부의 자바스크립트 표현식에서 if문을 사용할 수 없지�
 ```
 falsy한 값인 0은 예외적으로 화면에 나타남
 
-- undefined를 렌더링하지 않기   
+#### 2.4.5 undefined를 렌더링하지 않기   
 리액트 컴포넌트에서는 함수에서 undefined만 반환하여 렌더링하는 상황을 만들면 안됨   
 ||(OR)연산자를 사용하면 해당 값이 undefiend일때 사용할 값을 지정할 수 있어 오류 방지 할 수 있음   
 
@@ -36,18 +36,19 @@ return name || '값이 undefined입니다.';
 const name = undefined;
 return <div> {name || '보여 주고 싶은 문구내용'}</div>;
 ```
+### 2.5 ESLint와 Prettier 적용하기    
 
-* Prettier 
-VS Code에서 F1 -> format입력 -> Enter
-.prettierrc 설정파일을 생성하여 옵션 설정 가능
 
-Prettier Option 페이지 참고
+#### 2.5.2 Prettier    
+VS Code에서 F1 -> format입력 -> Enter   
+.prettierrc 설정파일을 생성하여 옵션 설정 가능   
+
+Prettier Option 페이지 참고   
 <https://prettier.io/docs/en/options.html>
 
 에디터 설정에서 format on save를 체크하여 저장시마다 자동 정리 할 수있음
 
-3장 컴포넌트
-=============
+## 3장 컴포넌트
 
 컴포넌트를 선언하는 방식은 1. 함수형 컴포넌트 2. 클래스형 컴포넌트 두 가지가 있음    
 두 가지의 큰 차이는 클래스형 컴포넌트의 경우 state 기능 및 라이프 사이클 기능을 사용할 수 있다는 것과 임의 메서드를 정의할 수 있다는 것   
@@ -138,11 +139,12 @@ function twice(value) {
 const triple = (value) => value *3
 ```
 
-props
--------------
+### 3.3 props
 
 properties를 줄인 표현으로 컴포넌트 속성을 설정할 때 사용하는 요소   
 해당 컴포넌트를 불러와 사용하는 부모 컴포넌트에서 값을 설정함 
+
+#### 3.3.1 JSX 내부에서 props 렌더링
 
 MyComponent.js
 ```js
@@ -150,6 +152,7 @@ const MyComponent = props => {
   return <div>My name is {props.name}.</div>
 };
 ```
+#### 3.3.2 컴포넌트를 사용할 때 props 값 지정하기   
 
 App.js (현재 부모 컴포넌트 되겠음)
 ```js
@@ -157,9 +160,7 @@ const App = () => {
   return <MyComponent name="Namy" />;
 }
 ```
-   
-   
-* defaultProps
+#### 3.3.3 props 기본값 설정: defaultProps   
 props 값을 따로 지정하지 않았을 때 보여 줄 기본값
 
 MyComponent.js
@@ -173,8 +174,7 @@ MyComponent.defaultProps = {
 };
 ```
    
-   
-* children
+#### 3.3.4 태그 사이의 내용을 보여주는 children
 컴포넌트 태그 사이의 내용을 보여주는 props
    
 App.js
@@ -196,8 +196,8 @@ const MyComponent = props => {
 };
 ```
    
-   
-* 비구조화 할당 문법 (구조 분해 문법)   
+#### 3.3.5 비구조화 할당 문법을 통해 props 내부 값 추출하기   
+비구조화 할당 문법 (구조 분해 문법)     
 props.name, props.children과 같이 중복되는 props.를 편하게 사용할 수 있어 더 짧은 코드로 사용 할 수 있음
 
 MyComponent.js
@@ -214,7 +214,7 @@ const MyComponent = props => {
 ```
 
 함수의 파라미터로 사용할 수 있으며   
-함수의 파라미터가 객체라면 그 값을 바로 비구조화해서 사용할 수 있음
+함수의 파라미터가 객체라면 그 값을 바로 비구조화해서 사용할 수 있음   
 
 MyComponent.js
 ```js
@@ -229,13 +229,17 @@ const MyComponent = ({ name, children }) => {
 ```
    
    
-* propTypes를 통한 props 검증
+#### 3.3.6 propTypes를 통한 props 검증   
+
+##### 3.3.6.1 isRequired를 사용하여 필수 propTypes 설정   
+
+##### 3.3.6.2 더 많은 propTypes 종류   
+
 
 추후 정리
 
 
-state
--------------
+### 3.4 state
 
 컴포넌트 자체적으로 지닌 값으로 컴포넌트 내부에서 업데이트 할 수 있는 값
 
@@ -249,7 +253,7 @@ props를 바꾸려면 부모 컴포넌트에서 바꾸어 주어야함
 
 Counter.js 생성
 
-#### 클래스형 컴포넌트의 state
+#### 3.4.1 클래스형 컴포넌트의 state, 3.4.1.1 state 객체 안에 여러 값이 있을 때
 
 ```JS
 import React, { Component } from 'react';
@@ -288,9 +292,9 @@ class Counter extends Component {
 export default Counter;
 ```
 
-* 다른 방식으로 state 초깃값 지정하기 
-state를 constructor에서 꺼내기
+##### 3.4.1.2 state를 constructor에서 꺼내기   
 
+다른 방식으로 state 초깃값 지정하기 
 
 ```JS
 import React, { Component } from 'react';
@@ -311,9 +315,7 @@ class Counter extends Component {
 export default Counter;
 ```
 
-
-* this.setState에 객체 대신 함수 인자 전달하기
-
+##### 3.4.1.3 this.setState에 객체 대신 함수 인자 전달하기   
 onClick 내부에서 this.setState를 두 번 호출 하는 경우
 
 ```JS
@@ -371,7 +373,7 @@ const sum = (a, b) => a + b;
 ```
 
 
-* this.setState가 끝난 후 특정 작업 실행하기
+##### 3.4.1.4 this.setState가 끝난 후 특정 작업 실행하기
 
 setState의 두번째 파라미터로 콜백(callback)함수를 등록하여 작업을 처리할 수 있음
 
@@ -394,10 +396,10 @@ setState의 두번째 파라미터로 콜백(callback)함수를 등록하여 작
 </button>
 ```
 
-#### 함수형 컴포넌트에서 useState 사용하기
+#### 3.4.2 함수형 컴포넌트에서 useState 사용하기
 
 
-* 배열 비구조화 할당
+##### 3.4.2.1 배열 비구조화 할당
 
 배열 비구조화 할당 문법을 알면 useState 사용 방법을 이해할 수 있음
 
@@ -411,7 +413,7 @@ const array = [1, 2];
 const [one, two] = array;
 ```
 
-* useState 사용하기   
+##### 3.4.2.2 useState 사용하기, 3.4.2.3 
 한 컴포넌트에서 useState 여러 번 사용할 수 있음 
 
 Say.js 생성
@@ -453,8 +455,7 @@ export default Say;
 ```
 
 
-state를 사용할 때 주의 사항
--------------
+### 3.5 state를 사용할 때 주의 사항
 state값을 바꾸어야 할 때는 setState 혹은 useState를 통해 전달받은 세터 함수를 사용해야함
 
 잘못된 코드 예 
@@ -492,8 +493,7 @@ nextArray.map(item => (item.id === 1 ? { ...item, value: false } : item)); //id�
 ```
 객체의 사본을 만들때는 spread 연산자 ...을 사용하고 배열에 대한 사본은 배열의 내장 함수들을 활용
 
-정리
--------------
+### 3.6 정리   
 props는 부모 컴포넌트가 설정
 state는 컴포넌트 자체적으로 지닌 값으로 컴포넌트 내부에서 값을 업데이트 할 수 있음
 
@@ -502,15 +502,13 @@ props는 무조건 고정적이 아니고
 자식 컴포넌트에서 특정 이벤트가 발생할 때 부모 컴포넌트의 메서드를 호출하면 props도 유동적으로 사용 가능
 
 
-4장 이벤트 핸들링
-=============
+## 4장 이벤트 핸들링
 
 사용자가 웹 브라우저에서 DOM요소들과 상호 작용하는 것을 이벤트라고 함
 
-리액트의 이벤트 시스템 
--------------
+### 4.1 리액트의 이벤트 시스템 
 
-이벤트 사용시 주의 사항
+#### 4.1.1 이벤트 사용시 주의 사항
 
 * 이벤트 이름은 카멜표기법으로 작성한다   
 onClick, onKeyUp
@@ -522,14 +520,13 @@ onClick, onKeyUp
 div, button, input, span 등 DOM요소에 이벤트 설정   
 직접 만든 컴포넌트에는 이벤트를 자체적으로 설정할 수 없음    
 
-리액트에서 지원하는 이벤트 종류   
+#### 4.1.2 리액트에서 지원하는 이벤트 종류   
 <https://ko.reactjs.org/docs/events.html>
 
 
-예제로 이벤트 핸들링 익히기
--------------
+### 4.2 예제로 이벤트 핸들링 익히기
 
-* 컴포넌트 생성 및 불러오기
+#### 4.2.1 컴포넌트 생성 및 불러오기
 
 EventPractive.js 파일 생성
 
@@ -561,7 +558,7 @@ class EventPractice extends Component {
 export default EventPractice;
 ```
    
-* onChange 이벤트 핸들링하기   
+#### 4.2.2 onChange 이벤트 핸들링하기   
    
 e 객체는 SyntheticEvent로 웹 브라우저의 네이티브 이벤트를 감싸는 객체
 네이티브 이벤트와 인터페이스가 같음 
@@ -648,7 +645,7 @@ class EventPractice extends Component {
 export default EventPractice;
 ```
    
-* 임의 메서드 만들기   
+#### 4.2.3 임의 메서드 만들기   
    
 이벤트에 실행할 자바스크립트 코드를 전달하는 것이 아니라 함수 형태의 값을 전달해야함
 
@@ -664,7 +661,7 @@ export default EventPractice;
 메서드를 this와 바인딩하는 작업이 필요하다   
 
 
-기본방식
+##### 4.2.3.1 기본방식
 
 ```JS
 import React, { Component } from 'react';
@@ -716,7 +713,7 @@ class EventPractice extends Component {
 export default EventPractice;
 ```
 
-Property Initializer Syntax를 사용한 메서드 작성   
+##### 4.2.3.2 Property Initializer Syntax를 사용한 메서드 작성   
 
 메서드 바인딩은 생성자 메서드에서 하는 것이 정석이지만 불편할 수도 있음   
 새 메서드를 만들 때마다 constructor도 수정해야하기 때문
@@ -767,7 +764,7 @@ class EventPractice extends Component {
 export default EventPractice;
 ```
 
-* input 여러 개 다루기 & onKeyPress 이벤트 핸들링하기
+#### 4.2.4 input 여러 개 다루기 & 4.2.5 onKeyPress 이벤트 핸들링하기
 
 event 객체를 활용   
 e.target.name은 해당 인풋의 name을 가리킴 이 값을 사용하여 state를 설정
@@ -856,8 +853,7 @@ const object = {
 
 
 
-함수형 컴포넌트로 구현해 보기 
--------------
+### 4.3 함수형 컴포넌트로 구현해 보기 
 
 위의 작업을 함수형 컴포넌트로 구현할 수 있음
 
@@ -971,11 +967,9 @@ export default EventPractice;
 ```
 
 
-5장 ref: DOM에 이름 달기
-=============
+## 5장 ref: DOM에 이름 달기
 
-ref는 어떤 상황에서 사용해야 할까?
--------------
+### 5.1 ref는 어떤 상황에서 사용해야 할까?
 
 일반 HTML에서 DOM요소에 이름을 달 때는 id를 사용하는 것처럼 리액트 내부에서 DOM에 이름을 다는 것   
 reference의 줄임말. DOM을 직접적으로 건드려야 할 때 사용   
@@ -1042,7 +1036,7 @@ class App extends Component {
 export default App;
 ```
    
-DOM을 꼭 사용해야하는 상황 (state만으로 해결할 수 없는 기능이 있음)
+#### 5.1.3 DOM을 꼭 사용해야하는 상황 (state만으로 해결할 수 없는 기능이 있음)
 아래외 같은 상황은 ref를 사용 
    
 * 특정 input에 포커스 추가
@@ -1050,8 +1044,7 @@ DOM을 꼭 사용해야하는 상황 (state만으로 해결할 수 없는 기능
 * Canvas 요소에 그림 그리기 등 
    
    
-ref 사용
--------------
+### 5.2 ref 사용
 
 * 콜백 함수를 통한 ref 설정
 ref를 달고자 하는 요소에 ref라는 콜백 함수를 props로 전달해줌   
@@ -1063,7 +1056,7 @@ ref를 달고자 하는 요소에 ref라는 콜백 함수를 props로 전달해�
 ```
    
    
-* createRef를 통한 ref 설정
+#### 5.2.2 createRef를 통한 ref 설정
 리액트에 내장되어 있는 createRef라는 함수를 사용하는 것 
 이 함수를 사용하면 더 적은 코드로 쉽게 사용할 수 있음 
 
@@ -1130,12 +1123,11 @@ class ValidationSample extends Component {
 }
 ```
    
-컴포넌트에 ref달기
--------------
+### 5.3 컴포넌트에 ref달기
    
 주로 컴포넌트 내부에 있는 DOM을 컴포넌트 외부에서 사용할 때 씀
 
-사용법 
+#### 5.3.1 사용법 
 
 ```JS
 <MyComponent
@@ -1216,15 +1208,14 @@ class App extends Component {
 }
 ```
    
-정리
--------------
+### 5.4 정리
+
 컴포넌트 내부에서 DOM에 직접 접근해야 할 때는 ref를 사용함   
 다른 컴포넌트끼리 데이터를 교류할 때 사용하는 것은 잘못됨
    
    
    
-6장 컴포넌트의 반복
-=============
+## 6장 컴포넌트의 반복
 
 ```HTML
 <ul>
@@ -1235,15 +1226,15 @@ class App extends Component {
 ```
 위와 같이 반복되는 내용을 효율적으로 보여 주고 관리하는 방법
 
-자바스크립트 배열의 map()함수
--------------
+### 6.1 자바스크립트 배열의 map()함수   
+
 자바스크립트 배열 객체의 내장 함수 map()을 사용하여 반복되는 컴포넌트를 렌더링 할 수 있다   
 map 함수에 파라미터로 전달된 함수를 사용해서      
 배열 내 각 요소를 원하는 규칙(callback에 정의한)에 따라 변환한 결과로 새로운 배열을 생성함   
 배열의 각 요소에 대해 실행한 callback의 결과를 모은 새로운 배열   
 즉, 기존 배열을 새로운 배열로 만든다   
 
-문법
+#### 6.1.1 문법
 ```JS
 arr.map(callback, [thisArg])
 arr.map(callback(currentValue[, index[, array]])[, thisArg]) //MDN
@@ -1258,8 +1249,7 @@ arr.map(callback(currentValue[, index[, array]])[, thisArg]) //MDN
 * thisArg(선택 항목): callback 함수 내부에서 사용할 this 레퍼런스, callback을 실행할 때 this로 사용되는 값   
 
    
-데이터 배열을 컴포넌트 배열로 변환하기
--------------
+### 6.2 데이터 배열을 컴포넌트 배열로 변환하기   
 
 IterationSample.js 생성
 
@@ -1276,14 +1266,13 @@ export default IterationSample;
 ```
 위 코드를 실행하면 Key props이 없다는 경고가 나옴
 
-key
--------------
+### 6.3 key
 
 리액트에서 key는 컴포넌트 배열을 렌더링했을 때 어떤 원소에 변동이 있었는지 알아내려고 사용   
 key가 없을 때는 가상돔을 비교하는 과정에서 리스트를 순차적으로 비교하면서 변화를 감지하지만   
 key가 있다면 이 값을 사용하여 어떤 변화가 일어났는지 더욱 빠르게 알아낼 수 있음
 
-key 설정
+#### 6.3.1 key 설정
 
 key 값을 설정할 때는 map 함수의 인자로 전달되는 함수 내부에서 컴포넌트 props를 설정하듯이 설정하고   
 key 값은 언제나 유일해야하므로 데이터가 가진 고유값을 key값으로 설정해야함  
@@ -1306,10 +1295,10 @@ export default IterationSample;
 ```
    
 
-응용 
--------------
-   
-* useState를 사용하여 초기상태 설정 
+### 6.4 응용 
+
+#### 6.4.1 초기 상태 설정하기
+useState를 사용하여 초기상태 설정 
    
 세 가지 상태를 사용함 (1. 데이터 배열, 2. input 상태, 3. 데이터 배열에서 새로운 항목을 추가할 때 사용할 고유 id)   
 
@@ -1334,8 +1323,8 @@ const IterationSample = () => {
 
 export default IterationSample;
 ```
-   
-* 데이터 추가 기능 구현하기   
+    
+#### 6.4.2 데이터 추가 기능 구현하기    
 ```JS
 import React, { useState } from "react";
 
@@ -1379,7 +1368,7 @@ export default IterationSample;
 불변성 유지를 해 주어야 컴포넌트의 성능을 최적화 할 수 있음 
 
 
-* 데이터 제거 기능 구현하기      
+#### 6.4.3 데이터 제거 기능 구현하기      
 불변성을 유지하면서 배열의 특정 항목을 지울 때는 배열 내장 함수 filter를 사용함
 
 예시)
@@ -1434,8 +1423,7 @@ const IterationSample = () => {
 ```
 
 
-정리
--------------
+### 6.5 정리   
 
 key값은 유일해야 한다. 중복되면 오류 발생   
 상태 안에서 배열을 변형할 때는 배열에 직접 접근하여 수정하는 것이 아니라   
@@ -1444,8 +1432,7 @@ concat, filter 등의 배열 내장 함수를 사용하여 새로운 배열을 �
 
 
 
-7장 컴포넌트의 라이프사이클 메서드
-=============
+## 7장 컴포넌트의 라이프사이클 메서드
 
 모든 리액트 컴포넌트에는 라이프사이클(수명주기)가 존재   
 컴포넌트의 수명은 페이지에 렌더링되기 전인 준비 과정에서 시작하여 페이지에서 사라질 때 끝남   
@@ -1453,84 +1440,195 @@ concat, filter 등의 배열 내장 함수를 사용하여 새로운 배열을 �
 함수형 컴포넌트에서는 Hooks 기능을 사용하여 비슷한 작업을 처리함   
 
 
-7.1 라이프사이클 메서드의 이해
--------------
+### 7.1 라이프사이클 메서드의 이해
 
 라이프사이클 메서드의 종류는 총 9가지이며 3 카테고리로 나눔  
 Will 접두사가 붙은 메서드는 어떤 작업을 작동하기 전 실행   
 Did 접두사가 붙은 메서드는 어떤 작업을 작동한 후에 실행   
 
-1. 마운트 (mount)
+###### 마운트 (mount)
 DOM이 생성되고 웹 브라우저상에 나타나는 것
 
-마운트할 때 호출하는 메서드   
+* 마운트할 때 호출하는 메서드   
 
-* constructor   
+1. constructor   
 컴포넌트를 새로 만들 때마다 호출되는 클래스 생성자 메서드   
 
-* getDerivedStateFromProps   
+2. getDerivedStateFromProps   
 props에 있는 값을 state에 넣을 때 사용하는 메서드   
 
-* render   
+3. render   
 우리가 준비한 UI를 렌더링하는 메서드
 
-* componentDidMount   
+4. componentDidMount   
 컴포넌트가 웹 브라우저상에 나타난 후 호출하는 메서드
 
-2. 업데이트 (update)
-컴포넌트는 다음과 같은 총 네가지의 경우 업데이트함   
-* props가 바뀔 때
-* state가 바뀔 때
-* 부모 컴포넌트가 리렌더링될 때
-* this.forceUpdate로 강제로 렌더링을 트리거할 때
+######  업데이트 (update)
+컴포넌트는 다음과 같은 총 네가지의 경우 업데이트함    
+1. props가 바뀔 때
+2. state가 바뀔 때
+3. 부모 컴포넌트가 리렌더링될 때
+4. this.forceUpdate로 강제로 렌더링을 트리거할 때
 
 컴포넌트가 업데이트 되는 경우
 - 부모 컴포넌트에서 전달하는 props가 바뀔 때 렌더링
 - 컴포넌트 자신이 들고 있는 state가 setState를 통해 업데이트될 때
 - 부모 컴포넌트가 리렌더링 될 때: 자신에게 할당된 props가 바뀌지 않아도, 자신이 들고 있는 state가 바뀌지 않아도 부모 컴포넌트가 리렌더링되면 자식 컴포넌트 또한 리렌더링
    
-업데이트할 때 호출하는 메서드
-* getDerivedStateFromProps   
+* 업데이트할 때 호출하는 메서드
+1. getDerivedStateFromProps   
 마운트 과정과 업데이트 시작 전에도 호출. props의 변화에 따라 state 값에도 변화를 주고 싶을 때 사용
 
-* shouldComponentUpdate   
+2. shouldComponentUpdate   
 컴포넌트가 리렌더링을 해야 할지 말아야 할지 결정하는 메서드.    
 이 메서드는 true/false 값을 반환해야 함   
 true: 다음 라이프사이클 메서드 계속 실행   
 false: 작업 중지. 컴포넌트가 리렌더링 되지 않음.    
 특정 함수에서 this.forceUpdate()를 호출한다면 이 과정은 생략하고 render()호출   
 
-* render
+3. render
 컴포넌트를 리렌더링함
 
-* getSnapshotBeforeUpdate   
+4. getSnapshotBeforeUpdate   
 컴포넌트의 변화를 DOM에 반영하기 바로 직전에 호출하는 메서드
 
-* componentDidUpdate   
+5. componentDidUpdate   
 컴포넌트의 업데이트 작업이 끝난 후 호출하는 메서드 
 
-3. 언마운트 (unmount)     
+###### 언마운트 (unmount)     
 마운드의 반대 과정. 즉 컴포넌트를 DOM에서 제거하는 것  
 
 언마운트할 때 호출하는 메서드      
+
 * componentWillUnmount   
 컴포넌트가 웹 브라우저상에서 사라지기 전에 호출하는 메서드
 
 
+### 7.2 라이프사이클 메서드 살펴보기
+
+#### 7.2.1 render() 함수
+
+```JS
+render() {...}
+```
+컴포넌트 모양새를 정의함  
+라이프사이클 메서드 중 유일한 필수 메서드
+이 메서드 안에서 this.props와 this.state에 접근 할 수 있으며 리액트 요소를 반환
+아무것도 보여 주고 싶지 않다면 null, false 값을 반환 
+
+주의사항
+
+render()안에서는 이벤드 설정이 아닌 곳에서 setState를 사용하면 안됨
+브라우저 DOM에 접근도 안됨
+DOM정보를 가져오거나 state에 변화를 줄 때는 componentDidMount에서 처리해야함 
+
+#### 7.2.2 constructor 메서드   
+
+```JS
+constructor(props) {...}
+```
+
+컴포넌트 생성자 메서드로 컴포넌트를 만들 때 처음으로 실행    
+초기 state를 정의할 수 있음   
+
+생성자는 사용하는 두 가지 목적   
+
+1. this.state에 객체를 할당하여 지역 state를 초기화
+2. 인스턴스에 이벤트 처리 메서드를 바인딩
+
+#### 7.2.3 getDerivedStateFromProps 메서드 (자주 사용하지 않음)   
+props로 받아온 값을 state에 동기화시키는 용도로 사용   
+컴포넌트가 마운트될 때와 업데이트될 때 호출   
+
+```JS
+static getDerivedStateFromProps(nextProps, prevState) {
+  // 여기서는 setState 를 하는 것이 아니라
+  // 특정 props 가 바뀔 때 설정하고 설정하고 싶은 state 값을 리턴하는 형태로
+  // 사용됩니다.
+  /*
+  if (nextProps.value !== prevState.value) { // 조건에 따라 특정 값 동기화 
+    return { value: nextProps.value };
+  }
+  return null; // state를 변경할 필요가 없다면 null을 반환
+  */
+}
+```
+
+#### 7.2.4 componentDidMount 메서드
+
+```JS
+componentDidMount() {...}
+```
+
+컴포넌트를 만들고 첫 렌더링을 다 마친 후 실행   
+자바스크립트 라이브러리 또는 프레임워크의 함수를 호출하거나 이벤트 등록, setTimeOut, setInterval, 네트워크 요청 같은 비동기 작업을 처리함    
+
+#### 7.2.5 shouldComponentUpdate 메서드 (자주 사용하지 않음)   
+
+```JS
+shouldComponentUpdate(nextProps, nextState) {...}
+```
+props나 state를 변경했을 때 리렌더링을 시작할지 여부를 지정하는 메서드      
+반드시 true, false값을 반환해야함   
+이 메서드를 따로 생성하지 않으면 기본적으로 true 값을 반환   
+false 값을 반환한다면 업데이트 과정은 여기서 중지됨   
+현재 props는 this.props, state는 this.state로 접근   
+새로 설정될 props 또는 state는 nextProps와 nextState로 접근 할 수 있음
+
+성능 최적화만을 위한 메서드로 렌더링을 방지하는 목적으로 사용할 경우 버그로 이어짐 
+
+#### 7.2.6 getSnapshotBeforeUpdate 메서드 (자주 사용하지 않음)    
+render에서 만들어진 결과물이 브라우저에 실제로 반영되기 직전에 호출    
+이 메서드에서 반환하는 값은 componentDidUpdate에서 세 번째 파라미터인 snapshot 값으로 전달 받을 수 있음   
+주로 업데이트하기 직전의 값을 참고할 일이 있을 때 활용 
+
+예시
+```JS 
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // DOM 업데이트가 일어나기 직전의 시점입니다.
+    // 새 데이터가 상단에 추가되어도 스크롤바를 유지해보겠습니다.
+    // scrollHeight 는 전 후를 비교해서 스크롤 위치를 설정하기 위함이고,
+    // scrollTop 은, 이 기능이 크롬에 이미 구현이 되어있는데, 
+    // 이미 구현이 되어있다면 처리하지 않도록 하기 위함입니다.
+    if (prevState.array !== this.state.array) {
+      const {
+        scrollTop, scrollHeight
+      } = this.list;
+
+      // 여기서 반환 하는 값은 componentDidMount 에서 snapshot 값으로 받아올 수 있습니다.
+      return {
+        scrollTop, scrollHeight
+      };
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (snapshot) {
+      const { scrollTop } = this.list;
+      if (scrollTop !== snapshot.scrollTop) return; // 기능이 이미 구현되어있다면 처리하지 않습니다.
+      const diff = this.list.scrollHeight - snapshot.scrollHeight;
+      this.list.scrollTop += diff;
+    }
+  }
+```
+
+#### 7.2.7 componentDidUpdate 메서드   
 
 
-라이프사이클 메서드 살펴보기
+#### 7.2.8 componentWillUnmount 메서드   
+
+
+#### 7.2.9 componentDidCatch 메서드   
+
+
+
+7.3 라이프사이클 메서드 사용하기
 -------------
 
 
 
-라이프사이클 메서드 사용하기
--------------
 
-
-
-
-정리
+7.4 정리
 -------------
 
 
