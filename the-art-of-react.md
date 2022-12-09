@@ -1493,7 +1493,8 @@ false: 작업 중지. 컴포넌트가 리렌더링 되지 않음.
 컴포넌트의 변화를 DOM에 반영하기 바로 직전에 호출하는 메서드
 
 5. componentDidUpdate   
-컴포넌트의 업데이트 작업이 끝난 후 호출하는 메서드 
+컴포넌트의 업데이트 작업이 끝난 후 호출하는 메서드   
+최초 렌더링에서는 호출되지 않음
 
 #### 언마운트 (unmount)     
 마운드의 반대 과정. 즉 컴포넌트를 DOM에서 제거하는 것  
@@ -1513,6 +1514,7 @@ false: 작업 중지. 컴포넌트가 리렌더링 되지 않음.
 ```JS
 render() {...}
 ```
+클래스 컴포넌트에서 반드시 정의해아하는 유일한 메서드
 컴포넌트 모양새를 정의함  
 라이프사이클 메서드 중 유일한 필수 메서드
 이 메서드 안에서 this.props와 this.state에 접근 할 수 있으며 리액트 요소를 반환
@@ -1540,7 +1542,8 @@ constructor(props) {...}
 
 #### 7.2.3 getDerivedStateFromProps 메서드 (자주 사용하지 않음)   
 props로 받아온 값을 state에 동기화시키는 용도로 사용   
-컴포넌트가 마운트될 때와 업데이트될 때 호출   
+컴포넌트가 최초 마운트될 때와 업데이트될 때 redder 호출 전에 호출     
+state를 갱신하기 위한 객체를 반환하거나, null을 반환하여 아무 것도 갱신하지 않을 수 있습니다.
 
 ```JS
 static getDerivedStateFromProps(nextProps, prevState) {
@@ -1630,7 +1633,7 @@ getSnapshotBeforeUpdate()에서 반환값이 있다면 이 메서드에서 세 �
 ```JS
 componentWillUnmount() {...}
 ```
-컴포넌트를 DOM에서 제거되기 직전에 실행함
+컴포넌트가 DOM에서 제거되기 직전에 실행함
 componentDidUpdate에서 등록한 이벤트, 타이머, 네트워크 요청 취소, 직접 생성한 DOM이 있다면 여기서 제거해야함
 
 #### 7.2.9 componentDidCatch 메서드   
@@ -1672,6 +1675,7 @@ class LifeCycleSample extends Component {
     console.log('constructor')
   }
 
+  // 컴포넌트가 최초 마운트될 때와 업데이트될 때 redder 호출 전에 호출     
   // 부모에게서 받은 color 값을 state에 동기화
   static getDerivedStateFromProps(nextProps, prevState) { 
     console.log('getDerivedStateFromProps');
@@ -1681,15 +1685,18 @@ class LifeCycleSample extends Component {
     return null;
   }
 
+  // 컴포넌트를 만들고 첫 렌더링을 다 마친 후 실행 
   componentDidMount() {
     console.log('componentDidMount');
   }
 
+  // props나 state를 변경했을 때 리렌더링을 시작할지 여부를 지정   
   shouldComponentUpdate(nextProps, nextState) {
     console.log('shouldComponentUpdate', nextProps, nextState);
     return nextState.number % 10 !==4; // 숫자의 마지막 자리가 4면 리렌더링하지 않음
   }
 
+  // 컴포넌트가 DOM에서 제거되기 직전에 실행함
   componentWillUnmount() {
     console.log('componentWillUnmount');
   }
@@ -1700,8 +1707,8 @@ class LifeCycleSample extends Component {
     });
   }
 
-  // DOM에 변화가 일어나기 직전의 색상 속성을 snapshot값으로 반환해서
-  // componentDidUpdate 에서 조회할 수 있게 함
+  // 컴포넌트의 변화를 DOM에 반영하기 바로 직전에 호출하는 메서드
+  // DOM에 변화가 일어나기 직전의 색상 속성을 snapshot값으로 반환해서 componentDidUpdate 에서 조회할 수 있게 함
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('getSnapshotBeforeUpdate');
     if(prevProps.color !== this.props.color) {
@@ -1710,6 +1717,7 @@ class LifeCycleSample extends Component {
     return null;
   }
 
+  // 컴포넌트의 업데이트 작업이 끝난 후 호출하는 메서드 최초 렌더링에서는 호출되지 않음
   componentDidUpdate(prevProps, prevState, snapShot) {
     console.log('componentDidUpdate', prevProps, prevState);
     if(snapShot) {
@@ -1717,6 +1725,7 @@ class LifeCycleSample extends Component {
     }
   }
 
+  // render(): 
   render() {
     console.log('render');
 
@@ -1739,7 +1748,6 @@ class LifeCycleSample extends Component {
 }
 
 export default LifeCycleSample;
-
 ```
 
 App.js
