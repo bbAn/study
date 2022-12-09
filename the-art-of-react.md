@@ -1652,7 +1652,132 @@ componentDidCatch(error, info) {
 
 ### 7.3 라이프사이클 메서드 사용하기
 
+#### 7.3.1 예제 컴포넌트 생성
 
+LifeCycleSample.js 생성
+
+```JS
+import React, { Component } from "react";
+
+class LifeCycleSample extends Component {
+  state = {
+    number: 0,
+    color: null,
+  }
+
+  myRef = null; // ref를 설정할 부분
+
+  constructor(props) {
+    super(props);
+    console.log('constructor')
+  }
+
+  // 부모에게서 받은 color 값을 state에 동기화
+  static getDerivedStateFromProps(nextProps, prevState) { 
+    console.log('getDerivedStateFromProps');
+    if(nextProps.color !== prevState.color) {
+      return { color: nextProps.color };
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate', nextProps, nextState);
+    return nextState.number % 10 !==4; // 숫자의 마지막 자리가 4면 리렌더링하지 않음
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
+
+  handleClick = () => {
+    this.setState({
+      number: this.state.number + 1
+    });
+  }
+
+  // DOM에 변화가 일어나기 직전의 색상 속성을 snapshot값으로 반환해서
+  // componentDidUpdate 에서 조회할 수 있게 함
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('getSnapshotBeforeUpdate');
+    if(prevProps.color !== this.props.color) {
+      return this.myRef.style.color;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapShot) {
+    console.log('componentDidUpdate', prevProps, prevState);
+    if(snapShot) {
+      console.log('업데이트되기 직전 색상: ', snapShot);
+    }
+  }
+
+  render() {
+    console.log('render');
+
+    const style = {
+      color: this.props.color
+    };
+
+    return (
+      <div>
+        <h1 style={style} ref={ref => this.myRef=ref}>
+          {this.state.number}
+        </h1>
+        <p>color: {this.state.color}</p>
+        <button onClick={this.handleClick}>
+          더하기
+        </button>
+      </div>
+    )
+  }
+}
+
+export default LifeCycleSample;
+
+```
+
+App.js
+```JS
+import React, { Component } from "react";
+import LifeCycleSample from "./LifeCycleSample";
+
+// 랜덤 색상을 생성
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
+
+class App extends Component {
+
+  state = {
+    color:'#000000'
+  }
+
+  handleClick = () => {
+    this.setState({
+      color: getRandomColor()
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        {/* 버튼을 클릭할 때 마다 handleClick 호출 */}
+        <button onClick={this.handleClick}>랜덤 색상</button>
+        {/* color값을 props로 설정 */}
+        <LifeCycleSample color={this.state.color} />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
 
 
 
