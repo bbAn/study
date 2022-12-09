@@ -1506,6 +1506,8 @@ false: 작업 중지. 컴포넌트가 리렌더링 되지 않음.
 
 ### 7.2 라이프사이클 메서드 살펴보기
 
+<https://ko.reactjs.org/docs/react-component.html>
+
 #### 7.2.1 render() 함수
 
 ```JS
@@ -1613,37 +1615,62 @@ render에서 만들어진 결과물이 브라우저에 실제로 반영되기 �
 ```
 
 #### 7.2.7 componentDidUpdate 메서드   
-
+```JS
+componentDidUpdate(prevProps, prevState, snapshot) {...}
+```
+리렌더링 완료한 후 실행최초 렌더링에서는 호출되지 않음   
+업데이트가 끝난 직후로 DOM 관련 처리를 해도 무방함    
+컴포넌트가 갱신되었을 때 DOM을 조작하기 위하여 이 메서드를 활용함    
+prevProps, prevState를 사용하여 컴포넌트가 이전에 가졌던 데이터에 접근 가능
+이전과 현재의 props를 비교하여 네트워크 요청을 보내는 작업도 이 메서드에서 이루어지면 됨  
+getSnapshotBeforeUpdate()에서 반환값이 있다면 이 메서드에서 세 번째 인자 snapshot로 값을 전달 받을 수 있음      
+반환값이 없다면 해당 인자는 undefined   
 
 #### 7.2.8 componentWillUnmount 메서드   
-
+```JS
+componentWillUnmount() {...}
+```
+컴포넌트를 DOM에서 제거되기 직전에 실행함
+componentDidUpdate에서 등록한 이벤트, 타이머, 네트워크 요청 취소, 직접 생성한 DOM이 있다면 여기서 제거해야함
 
 #### 7.2.9 componentDidCatch 메서드   
+```JS
+componentDidCatch(error, info) {
+  this.setState({
+    error: true
+  });
+}
+```
+컴포넌트 렌더링 도중에 에러가 발생했을 때 오류 UI를 보여 줄 수 있게 해줌   
+자기 자신에게 발생하는 에러는 잡아낼 수 없고 자신의 this.props.children으로 전달되는 컴포넌트에서 발생하는 에러만 잡아낼 수 있다   
+2개의 매개변수를 전달받음   
+
+1. error - 발생한 오류   
+2. info - 어떤 컴포넌트가 오류를 발생시켰는지에 대한 정보를 포함한 componentStack 키를 갖고 있는 객체   
 
 
 
-7.3 라이프사이클 메서드 사용하기
--------------
+### 7.3 라이프사이클 메서드 사용하기
 
 
 
 
-7.4 정리
--------------
+
+### 7.4 정리
 
 
 
-8장 Hooks
-=============
+## 8장 Hooks
 
 
-9장 컴포넌트 스타일링
-=============
+
+## 9장 컴포넌트 스타일링
 
 
-10장 일정 관리 웹 어플리케이션 만들기
-=============
+
+### 10장 일정 관리 웹 어플리케이션 만들기
 
 
-11장 
-=============
+
+### 11장 
+
