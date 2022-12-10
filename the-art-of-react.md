@@ -1871,6 +1871,91 @@ render() {
 
 ## 8장 Hooks
 
+### 8.1 useState
+
+CounterHook.js
+```JS
+import React, { useState } from 'react';
+
+const CounterHook = () => {
+  // useState 함수 파라미터에는 상태의 기본값(0)을 넣어줌
+  // 즉 카운터의 기본값(value)을 0으로 설정하겠다는 의미
+  const [value, setValue] = useState(0);
+  // 배열의 첫 번째는 원소의 상태값, 두 번째 원소는 상태 설정 함수
+
+  return(
+    <div>
+      <p>
+         현재 카운터 값은 <b>{value}</b>입니다.
+      </p>
+      <button onClick={() => setValue(value + 1)}> +1</button>
+      <button onClick={() => setValue(value - 1)}> -1</button>
+    </div>
+  );
+};
+
+export default CounterHook;
+```
+
+#### 8.1.1 useState를 여러 번 사용하기 
+
+Info.js
+
+```JS
+import React,  { useState } from 'react';
+
+const Info = () => {
+  const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
+
+  const onChangeName = e => {
+    setName(e.target.value);
+  };
+
+  const onChangeNickname = e => {
+    setNickname(e.target.value);
+  };
+
+  return(
+    <div>
+      <div>
+        <input value={name} onChange={onChangeName} />
+        <input value={nickname} onChange={onChangeNickname} />
+      </div>
+
+      <div>
+        <div>
+          <b>이름:</b> {name}
+        </div>
+        <div>
+          <b>닉네임:</b> {nickname}
+        </div>
+      </div>
+    </div>
+  )
+} 
+
+export default Info;
+```
+
+
+### 8.2 useEffet
+
+### 8.3 useReducer
+
+### 8.4 useMemo
+
+### 8.5 useCallbacl
+
+### 8.6 useRef
+
+### 8.7 커스텀 Hooks 만들기
+
+### 8.8 다른 Hooks
+
+### 8.9 정리
+
+
 
 
 ## 9장 컴포넌트 스타일링
