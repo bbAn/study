@@ -1861,12 +1861,12 @@ render() {
 
 ### 7.4 정리
 
-라이프사이클 도표
+라이프사이클 도표   
 <https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
 
-라이프사이클 메서드는 컴포넌트 상태에 변화가 있을 때마다 실행하는 메서드
-서드파티 라이브러리를 사용하거나 DOM을 직접 건드려야 하는 상황에서 유용
-컴포넌트 업데이트 성능을 개선할 때는 shouldComponentUpdate가 중요하게 사용됨
+라이프사이클 메서드는 컴포넌트 상태에 변화가 있을 때마다 실행하는 메서드   
+서드파티 라이브러리를 사용하거나 DOM을 직접 건드려야 하는 상황에서 유용   
+컴포넌트 업데이트 성능을 개선할 때는 shouldComponentUpdate가 중요하게 사용됨   
 
 
 ## 8장 Hooks
