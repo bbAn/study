@@ -1788,10 +1788,85 @@ class App extends Component {
 export default App;
 ```
 
+#### 7.3.3 에러 잡아내기
 
+LifeCycleSample.js
+```JS
+render() {
+  console.log('render');
+
+  const style = {
+    color: this.props.color
+  };
+
+  return (
+    <div>
+      {this.props.missing.value} // 존재하지 않은 props인 missing 객체의 value를 조회해서 오류 발생 시킴
+      <h1 style={style} ref={ref => this.myRef=ref}>
+        {this.state.number}
+      </h1>
+      <p>color: {this.state.color}</p>
+      <button onClick={this.handleClick}>
+        더하기
+      </button>
+    </div>
+  )
+}
+```
+
+ErrorBoundary.js 생성
+
+```JS
+import React, { Component } from 'react';
+
+class ErrorBoundary extends Component {
+  state = {
+    error: false
+  };
+
+  // 에러가 발생하면 componentDidCatch 호출
+  componentDidCatch(error, info) {
+    this.setState({
+      error: true 
+    });
+    console.log({ error, info });
+  }
+
+  // render 함수는 this.state.error 값이 true일 때 에러 발생 문구를 보여줌
+  render() {
+    if (this.state.error) return <div>에러가 발생했습니다.</div>;
+    return this.props.children;
+  }
+}
+
+export default ErrorBoundary;
+```
+
+App.js
+
+```JS
+render() {
+    return (
+      <div>
+        {/* 버튼을 클릭할 때 마다 handleClick 호출 */}
+        <button onClick={this.handleClick}>랜덤 색상</button>
+        <ErrorBoundary> // 감싸줌
+          {/* color값을 props로 설정 */}
+          <LifeCycleSample color={this.state.color} />
+        </ErrorBoundary>
+      </div>
+    );
+  }
+```
 
 ### 7.4 정리
 
+라이프사이클 도표
+<https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
+
+라이프사이클 메서드는 컴포넌트 상태에 변화가 있을 때마다 실행하는 메서드
+서드파티 라이브러리를 사용하거나 DOM을 직접 건드려야 하는 상황에서 유용
+컴포넌트 업데이트 성능을 개선할 때는 shouldComponentUpdate가 중요하게 사용됨
 
 
 ## 8장 Hooks
