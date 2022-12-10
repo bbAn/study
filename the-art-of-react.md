@@ -1573,7 +1573,8 @@ componentDidMount() {...}
 ```JS
 shouldComponentUpdate(nextProps, nextState) {...}
 ```
-props나 state를 변경했을 때 리렌더링을 시작할지 여부를 지정하는 메서드      
+props나 state를 변경했을 때 리렌더링을 시작할지 여부를 지정하는 메서드
+기본 동작은 매 state 변화마다 다시 렌더링을 수행
 반드시 true, false값을 반환해야함   
 이 메서드를 따로 생성하지 않으면 기본적으로 true 값을 반환   
 false 값을 반환한다면 업데이트 과정은 여기서 중지됨   
