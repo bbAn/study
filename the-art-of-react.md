@@ -1242,9 +1242,9 @@ arr.map(callback(currentValue[, index[, array]])[, thisArg]) //MDN
    
 함수의 파라미터
 * callback: 새로운 배열의 요소를 생성하는 함수로 파라미터는 다음 세가지   
-1. currentValue: 현재 처리하고 있는 요소   
-2. index: 현재 처리하고 있는 요소의 index 값   
-3. array: 현재 처리하고 있는 원본 배열, map()을 호출한 배열   
+  * currentValue: 현재 처리하고 있는 요소   
+  * index: 현재 처리하고 있는 요소의 index 값   
+  * array: 현재 처리하고 있는 원본 배열, map()을 호출한 배열   
 
 * thisArg(선택 항목): callback 함수 내부에서 사용할 this 레퍼런스, callback을 실행할 때 this로 사용되는 값   
 
@@ -1429,16 +1429,12 @@ key값은 유일해야 한다. 중복되면 오류 발생
 상태 안에서 배열을 변형할 때는 배열에 직접 접근하여 수정하는 것이 아니라   
 concat, filter 등의 배열 내장 함수를 사용하여 새로운 배열을 만든 후 새로운 상태로 설정해 주어야함   
 
-
-
-
 ## 7장 컴포넌트의 라이프사이클 메서드
 
 모든 리액트 컴포넌트에는 라이프사이클(수명주기)가 존재   
 컴포넌트의 수명은 페이지에 렌더링되기 전인 준비 과정에서 시작하여 페이지에서 사라질 때 끝남   
 라이프사이클 메서드는 클래스형 컴포넌트에서만 사용할 수 있음   
 함수형 컴포넌트에서는 Hooks 기능을 사용하여 비슷한 작업을 처리함   
-
 
 ### 7.1 라이프사이클 메서드의 이해
 
@@ -1449,18 +1445,18 @@ Did 접두사가 붙은 메서드는 어떤 작업을 작동한 후에 실행
 #### 마운트 (mount)
 DOM이 생성되고 웹 브라우저상에 나타나는 것
 
-* 마운트할 때 호출하는 메서드   
+마운트할 때 호출하는 메서드   
 
-1. constructor   
+* constructor   
 컴포넌트를 새로 만들 때마다 호출되는 클래스 생성자 메서드   
 
-2. getDerivedStateFromProps   
+* getDerivedStateFromProps   
 props에 있는 값을 state에 넣을 때 사용하는 메서드   
 
-3. render   
+* render  
 우리가 준비한 UI를 렌더링하는 메서드
 
-4. componentDidMount   
+* componentDidMount   
 컴포넌트가 웹 브라우저상에 나타난 후 호출하는 메서드
 
 ####  업데이트 (update)
@@ -1470,29 +1466,30 @@ props에 있는 값을 state에 넣을 때 사용하는 메서드
 3. 부모 컴포넌트가 리렌더링될 때
 4. this.forceUpdate로 강제로 렌더링을 트리거할 때
 
-컴포넌트가 업데이트 되는 경우
-- 부모 컴포넌트에서 전달하는 props가 바뀔 때 렌더링
-- 컴포넌트 자신이 들고 있는 state가 setState를 통해 업데이트될 때
-- 부모 컴포넌트가 리렌더링 될 때: 자신에게 할당된 props가 바뀌지 않아도, 자신이 들고 있는 state가 바뀌지 않아도 부모 컴포넌트가 리렌더링되면 자식 컴포넌트 또한 리렌더링
+* 컴포넌트가 업데이트 되는 경우
+  * 부모 컴포넌트에서 전달하는 props가 바뀔 때 렌더링
+  * 컴포넌트 자신이 들고 있는 state가 setState를 통해 업데이트될 때
+  * 부모 컴포넌트가 리렌더링 될 때: 자신에게 할당된 props가 바뀌지 않아도, 자신이 들고 있는 state가 바뀌지 않아도 부모 컴포넌트가 리렌더링되면 자식 컴포넌트 또한 리렌더링
    
-* 업데이트할 때 호출하는 메서드
-1. getDerivedStateFromProps   
+업데이트할 때 호출하는 메서드
+
+* getDerivedStateFromProps   
 마운트 과정과 업데이트 시작 전에도 호출. props의 변화에 따라 state 값에도 변화를 주고 싶을 때 사용
 
-2. shouldComponentUpdate   
+* shouldComponentUpdate   
 컴포넌트가 리렌더링을 해야 할지 말아야 할지 결정하는 메서드.    
 이 메서드는 true/false 값을 반환해야 함   
 true: 다음 라이프사이클 메서드 계속 실행   
 false: 작업 중지. 컴포넌트가 리렌더링 되지 않음.    
 특정 함수에서 this.forceUpdate()를 호출한다면 이 과정은 생략하고 render()호출   
 
-3. render
+* render
 컴포넌트를 리렌더링함
 
-4. getSnapshotBeforeUpdate   
+* getSnapshotBeforeUpdate   
 컴포넌트의 변화를 DOM에 반영하기 바로 직전에 호출하는 메서드
 
-5. componentDidUpdate   
+* componentDidUpdate   
 컴포넌트의 업데이트 작업이 끝난 후 호출하는 메서드   
 최초 렌더링에서는 호출되지 않음
 
