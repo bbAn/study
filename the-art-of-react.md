@@ -903,7 +903,6 @@ const EventPracticeComponent = () => {
 export default EventPracticeComponent;
 ```
 
-
 useState를 통해 사용하는 상태에 문자열이 아닌 객체를 넣어 보자
 인풋 개수가 많아지면 e.target.name을 활용하는 것이 더 좋을 수 있음
 
@@ -966,6 +965,21 @@ const EventPractice = () => {
 export default EventPractice;
 ```
 
+리액트 상태에서 객체를 수정해야 할 때에는,   
+새로운 객체를 만들어서 새로운 객체에 변화를 주고, 이를 상태로 사용해주어야 함   
+
+```JS
+const nextForm = {
+  ...form, // 기존의 form 내용을 이 자리에 복사한 뒤
+  [e.target.name]: e.target.value // 원하는 값을 덮어 씌우기
+};
+```
+
+... 는 spread 문법   
+객체의 내용을 모두 "펼쳐서" 기존 객체를 복사   
+이러한 작업을, "불변성을 지킨다" 라고 부름.    
+불변성을 지켜주어야만 리액트 컴포넌트에서 상태가 업데이트가 됐음을 감지 할 수 있고 이에 따라 필요한 리렌더링이 진행됨   
+추가적으로, 리액트에서는 불변성을 지켜주어야만 컴포넌트 업데이트 성능 최적화를 제대로 할 수 있
 
 ## 5장 ref: DOM에 이름 달기
 
