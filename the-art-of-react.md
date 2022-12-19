@@ -2351,6 +2351,9 @@ const RefSample = () => {
 
 export default RefSample;
 ```
+ref 안의 값이 바뀌어도 컴포넌트가 렌더링되지 않는다는 점에 주의해야함   
+렌더링과 관련되지 않은 값을 관리할 때만 위 방식으로 작성
+
 
 ### 8.7 커스텀 Hooks 만들기
 
