@@ -2356,12 +2356,74 @@ ref 안의 값이 바뀌어도 컴포넌트가 렌더링되지 않는다는 점�
 
 
 ### 8.7 커스텀 Hooks 만들기
+여러 컴포넌트에서 비슷한 기능을 공유할 경우, 이를 여러분만의 Hook으로 작성하여 로직을 재사용할 수 있음
+
+useInputs.js
+
+```JS
+import { useReducer } from 'react'
+
+function reducer(state, action) {
+  return {
+    ...state,
+    [action.name]: action.value
+  };
+}
+
+export default function useInputs(initialForm) {
+  const [state, dispatch] = useReducer(reducer, initialForm);
+  const onChange = e => {
+    dispatch(e.target);
+  };
+  return [state, onChange];
+}
+```
+
+Info.js
+```JS
+import React from 'react';
+import useInputs from './useInputs';
+
+const Info = () => {
+  const [state, onChange] = useInputs({
+    name: '',
+    nickname: ''
+  })
+  const { name, nickname } = state;
+
+  return(
+    <div>
+      <div>
+        <input name="name" value={name} onChange={onChange} />
+        <input name="nickname" value={nickname} onChange={onChange} />
+      </div>
+
+      <div>
+        <div>
+          <b>이름:</b> {name}
+        </div>
+        <div>
+          <b>닉네임:</b> {nickname}
+        </div>
+      </div>
+    </div>
+  )
+} 
+
+export default Info;
+```
+
 
 ### 8.8 다른 Hooks
 
+다른 개발자들이 만든 Hooks 
+
+<https://nikgraf.github.io/react-hooks/>   
+<https://github.com/rehooks/awesome-react-hooks>
+
 ### 8.9 정리
-
-
+리액트에서 Hooks 패턴을 사용하면 클래스형 컴포넌트를 작성하지 않고도 대부분의 기능을 구현할 수 있음    
+메뉴얼에서는 새로 작성하는 컴포넌트의 경우 함수형 컴포넌트와 Hooks를 사용할 것을 권장   
 
 
 ## 9장 컴포넌트 스타일링
