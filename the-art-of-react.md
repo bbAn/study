@@ -2428,6 +2428,73 @@ export default Info;
 
 ## 9장 컴포넌트 스타일링
 
+스타일링 방식  
+* 일반 css: 컴포넌트를 스타일링하는 가장 기본적인 방식
+* Sass: 자주 사용되는 CSS 전처리기 중 하나로 확장된 CSS 문법을 사용하여 CSS 코드를 더욱 쉽게 작성할 수 있도록 해줌
+* CSS Module: 스타일을 작성할 때 CSS 클래스가 다른 CSS 클래스의 이름과 절대 충돌하지 않도록 파일마다 고유한 이름을 자동으로 생성해주는 옵션
+* styled-components: 스타일을 자바스크립트 파일에 내장시키는 방식으로 스타일을 작성함과 동시에 해당 스타일이 적용된 컴포넌트를 만들 수 있게 해줌
+
+### 9.1 가장 흔한 방식, 일반 CSS
+
+### 9.2 Sass 사용하기
+별도의 추가 설정 없이 바로 사용 가능    
+.sass와 .scss는 문법적 차이가 있음   
+.sass는 {}와 ;을 사용하지 않음   
+
+#### 9.2.1 utils 함수 분리하기
+여러 파일에서 사용될 수 있는 Sass 변수 및 믹스인은 다른 파일로 분리하여 작성할 수 있음
+
+#### 9.2.2 sass-loader 설정 커스터마이징하기
+sass 파일을 상대경로를 절대경로로 불러오기 위해 사용
+
+```bash
+ yarn eject 
+```
+위 명령어 실행 후 질문에 y   
+config 폴더내 webpack.config.js에서 수정
+
+
+```JS
+{
+  test: sassRegex,
+  exclude: sassModuleRegex,
+  use: getStyleLoaders({
+      importLoaders: 3,
+      sourceMap: isEnvProduction
+        ? shouldUseSourceMap
+        : isEnvDevelopment,
+      modules: {
+        mode: 'icss',
+      },
+      // 'sass-loadeer' 삭제 후 아래 내용 추가
+  
+  }).concat({
+    loader: require.resolve('sass-loader'),
+    options: {
+      includePaths: [paths.appSrc + 'styleds'],
+      sourceMap: isEnvProduction
+        ? shouldUseSourceMap
+        : isEnvDevelopment,
+      data: `@import 'utils';` // data 옵션은 sass 파일을 불러올 때 마다 코드 맨 윗부분에 특정 코드를 포함 시켜줌
+    }
+  }),
+  
+  sideEffects: true,
+},
+```
+
+#### 9.2.3 node_modules에서 라이브러리 불러오기
+
+```JS
+@import '~library/styles';
+```
+
+### 9.3 CSS Module
+
+### 9.4 styled-components
+
+### 9.5 정리
+
 
 
 ### 10장 일정 관리 웹 어플리케이션 만들기
