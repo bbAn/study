@@ -1,6 +1,7 @@
 # React Testing Library (RTL)
 
-React 컴포넌트를 테스트 하기 위해 만들어진 도구. 기본적으로 CRA에 내장되어 있으며 직접 환경 설정 가능   
+React 컴포넌트를 테스트 하기 위해 만들어진 도구   
+기본적으로 CRA에 내장되어 있으며 직접 환경 설정 가능   
 Jest와 상호 보완 관계 (RTL이 Jest를 포함하는 구조)   
 Jest를 통해 기능 테스트를 진행할 수 있지만 React의 컴포넌트를 렌더링하고 테스트하기 위해서 몇가지 기능이 더 필요함   
 
@@ -75,6 +76,8 @@ expect(screen.getByText('1')).toBeTruthy();
 
 
 
+* 참고   
+<https://tecoble.techcourse.co.kr/post/2021-10-22-react-testing-library/>
 
 
 
