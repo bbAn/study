@@ -2490,8 +2490,194 @@ config 폴더내 webpack.config.js에서 수정
 ```
 
 ### 9.3 CSS Module
+css에서 사용할 클래스 이름을 고유한 값 파일이름_클래스이름_해시값 형태로 자동으로 만들어 컴포넌트 스타일 클래스 이름이 중첩되는 현상을 방지해 주는 기술   
+리액트에서 .module.css 확장자로 파일을 저장하기만 하면 CSS Module 모듈 적용   
+클래스를 적용하고 싶은 JSX 엘리먼트에 className={styles.클래스이름} 형태로 전달해주면 됨   
+템플릿 리터럴을 사용하여 다중 클래스 지정 가능 
 
-### 9.4 styled-components
+```JS
+<div className={`${styles.클래스이름1} {styles.클래스이름2}`}> </div>
+```
+다음과 같이 작성할 수도 있음 
+
+```JS
+className={[styles.wrapper, styles.inverted].join('')}
+```
+
+#### 9.3.1 classnames
+CSS 클래스를 조건부로 설정할 때 매우 유용한 라이브러리   
+
+
+#### 9.3.2 Sass와 함께 사용하기
+파일이름에 .module.scss 확장자를 사용해주면 사용가능
+
+#### 9.3.3 CSS Module이 아닌 파일에서 CSS Module 사용하기
+
+### 9.4 styled-component 
+컴포넌트의 스타일링의 또 다른 패러다임인 CSS-in-JS (자바스크립트 파일 안에 스타일을 선언)   
+이를 대체할 수 있는 라이브러리는 현재 emotions이 대표적 
+
+StyledComponent.js
+```JS
+import React from 'react';
+import styled, { css } from 'styled-components';
+
+
+const Box = styled.div`
+  /* props로 넣어 준 값을 직접 전달해 줄 수 있음 */
+  background: ${props => props.color || 'blue'};
+  padding: 1rem;
+  display: flex;
+`;
+
+const Button = styled.button`
+  background: white;
+  color: black;
+  border-radius: 4px;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 600;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  ${props => 
+    props.inverted &&
+    css`
+      background: none;
+      border: 2px solid white;
+      color: white;
+      &:hover {
+        background: white;
+        color: black;
+      }
+    `};
+    
+  & + button {
+      margin-left: 1rem;
+  }
+`;
+
+const StyledComponent = () => (
+  <Box color="black">
+    <Button>안녕하세요</Button>
+    <Button inverted={true}>테두리만</Button>
+  </Box>
+);
+
+export default StyledComponent;
+```
+#### 9.4.1 Tagged 템플릿 리터럴
+`(백틱)을 사용하는 문법을 Tagged 템플릿 리터럴이라고 부름   
+일반 템플릿 리터럴과 다른 점은 템플릿 안에 자바스크립트 객체나 함수를 전달할 때 온전히 추출할 수 있음   
+
+```JS
+function tagged(...args) {
+  console.log(args);
+}
+tagged`hello ${{ foo: 'bar' }} ${() => 'world'}!`
+```
+
+```JS
+`ABC${value1}EFG${value2}HIJ${value3}`
+// ABC, EFG, HIJ(,+ "")와 value1, value2, value3로 분해
+```
+
+#### 9.4.2 스타일링된 엘리먼트 만들기
+
+예시
+```JS
+import styled from 'styled-components';
+ 
+const MyComponent = styled.div`
+  font-size: 2rem;
+`;
+```
+사용해야 할 태그명이 유동적이거나 특정 컴포넌트 자체에 스타일링해 주고 싶다면 다음과 같이 구현
+```JS
+// 태그의 타입을 styled 함수의 인자로 전달
+const MyInput = styled('input')`
+  background: gray;
+`
+// 아예 컴포넌트 형식을 값에 넣어 줌
+const StyledLink = styled(Link)` 
+// 컴포넌트(Link)를 styled의 파라미터에 넣는 경우는 
+// 해당 컴포넌트에 className props를 최상위 DOM의 className값으로 설정하는 작업이 내부적으로 되어 있어야함
+  color: blue;
+`
+```
+
+#### 9.4.3 스타일에서 props 조회하기
+컴포넌트에 전달된 props값을 참조하여 스타일을 지정할 수 있음   
+
+```JS
+const Box = styled.div`
+  // props로 넣어 준 값을 직접 전달해 줄 수 있음
+  background: ${props => props.color || 'blue'};
+  padding: 1rem;
+  display: flex;
+`;
+
+// JSX에서 color값을 props로 넣어 줄 수 있음
+<Box color="black">(...)</Box>
+```
+#### 9.4.4 props에 따른 조건부 스타일링
+StyledComponent.js 에서 
+```JS
+  ${props => 
+    props.inverted &&
+    css`
+      background: none;
+      border: 2px solid white;
+      color: white;
+      &:hover {
+        background: white;
+        color: black;
+      }
+    `};
+```
+
+#### 9.4.5 반응형 디자인
+
+ styled-components 매뉴얼에서 제공하는 유틸 함수를 사용
+```JS
+import React from 'react';
+import styled, { css } from 'styled-components';
+ 
+const sizes = {
+  desktop: 1024,
+  tablet: 768
+};
+ 
+// 위에 있는 size 객체에 따라 자동으로 media 쿼리 함수를 만들어 줍니다.
+// 참고: https://www.styled-components.com/docs/advanced#media-templates
+const media = Object.keys(sizes).reduce((acc, label) => {
+acc[label] = (...args) => css`
+  @media (max-width: ${sizes[label] / 16}em) {
+    ${css(...args)};
+    }
+`;
+ 
+return acc;
+}, {});
+ 
+const Box = styled.div`
+/* props로 넣어 준 값을 직접 전달해 줄 수 있습니다. */
+background: ${props => props.color || 'blue'};
+padding: 1rem;
+display: flex;
+width: 1024px;
+margin: 0 auto;
+${media.desktop`width: 768px;`}
+${media.tablet`width: 100%;`};
+`;
+```
+실제 사용한다면 별도의 파일로 모듈화해서 사용
 
 ### 9.5 정리
 
