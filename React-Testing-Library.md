@@ -1,11 +1,15 @@
 # React Testing Library (RTL)
 
 React 컴포넌트를 테스트 하기 위해 만들어진 도구   
+리액트 컴포넌트 구성요소까지 DOM으로 만들어서 테스트 할 수 있게 해줌   
 기본적으로 CRA에 내장되어 있으며 직접 환경 설정 가능   
 Jest와 상호 보완 관계 (RTL이 Jest를 포함하는 구조)   
 Jest를 통해 기능 테스트를 진행할 수 있지만 React의 컴포넌트를 렌더링하고 테스트하기 위해서 몇가지 기능이 더 필요함   
 
-* Jest - 자체적인 test runner와 test util 제공
+* Jest  
+페이스북에서 만들어서 리액트와 더불어 많은 자바스크립트 개발자로부터 좋은 반응을 얻고 있는 테스팅 라이브러리   
+자체적인 test runner와 test util 제공
+
 * RTL - Jest + React 컴포넌트 test util 제공
 
 test runner는 테스트 실행 시 .test.js 를 가진 파일을 자동으로 탐색하며 테스트를 진행함   
@@ -18,6 +22,10 @@ test runner는 테스트 실행 시 .test.js 를 가진 파일을 자동으로 �
 1. 컴포넌트 띄우기
 2. 특정 액션을 발생 시키기
 3. 결과 확인
+
+## render()
+
+react-testing-library 에서 컴포넌트를 렌더링 할 때 사용하는 함수   
 
 ## Query
 렌더링 된 DOM 노드에 접근하여 엘리먼트를 가져오는 메서드   
@@ -74,12 +82,18 @@ userEvent.click(target);
 expect(screen.getByText('1')).toBeTruthy();
 ```
 
+## 이벤트 다루기
+fireEvent() 함수 사용 
+
+```JS
+fireEvent.이벤트이름(DOM, 이벤트객체);
+```
 
 
 * 참고   
 <https://tecoble.techcourse.co.kr/post/2021-10-22-react-testing-library/>
-
-
+<https://sangmin802.github.io/Study/TestCode/jest%20&&%20react-test-library/>
+<https://dev-yakuza.posstree.com/ko/react/create-react-app/jest/>
 
 
 
