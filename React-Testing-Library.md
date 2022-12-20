@@ -91,9 +91,9 @@ fireEvent.이벤트이름(DOM, 이벤트객체);
 
 
 * 참고   
-<https://tecoble.techcourse.co.kr/post/2021-10-22-react-testing-library/>
-<https://sangmin802.github.io/Study/TestCode/jest%20&&%20react-test-library/>
-<https://dev-yakuza.posstree.com/ko/react/create-react-app/jest/>
+<https://tecoble.techcourse.co.kr/post/2021-10-22-react-testing-library/>   
+<https://sangmin802.github.io/Study/TestCode/jest%20&&%20react-test-library/>   
+<https://dev-yakuza.posstree.com/ko/react/create-react-app/jest/>   
 
 
 
