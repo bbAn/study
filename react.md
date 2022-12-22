@@ -30,3 +30,6 @@ import ExportComponent from "./ExportComponent.js"
 
 ```
 
+## 불변성
+
+<https://hsp0418.tistory.com/171>
