@@ -142,7 +142,8 @@ const triple = (value) => value *3
 ### 3.3 props
 
 properties를 줄인 표현으로 컴포넌트 속성을 설정할 때 사용하는 요소   
-해당 컴포넌트를 불러와 사용하는 부모 컴포넌트에서 값을 설정함 
+해당 컴포넌트를 불러와 사용하는 부모 컴포넌트에서 값을 설정함   
+props 이름만 넣어주면 propsName={true} 와 동일한 의미   
 
 #### 3.3.1 JSX 내부에서 props 렌더링
 
