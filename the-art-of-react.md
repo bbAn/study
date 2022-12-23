@@ -2247,6 +2247,11 @@ useMemo(() => {
 useRef Hook은 함수형 컴포넌트에서 ref를 쉽게 사용할 수 있도록 해줌   
 useRef를 사용하여 ref를 설정하면 useRef를 통해 만든 객체 안의 current 값이 실제 엘리먼트를 가리킴   
 
+useRef 함수는 current 속성을 가지고 있는 객체를 반환하는데, 인자로 넘어온 초기값을 current 속성에 할당함   
+이 current 속성은 값을 변경해도 상태를 변경할 때 처럼 React 컴포넌트가 다시 랜더링되지 않음    
+React 컴포넌트가 다시 랜더링될 때도 마찬가지로 이 current 속성의 값이 유실되지 않는다.   
+<https://www.daleseo.com/react-hooks-use-ref/>   
+
 Average.js
 
 ```JS
