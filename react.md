@@ -35,6 +35,6 @@ import ExportComponent from "./ExportComponent.js"
 <https://hsp0418.tistory.com/171>
 
 
-## 함수형 업데이트   
+## useState함수형 업데이트   
 
 <https://velog.io/@tjdgus0528/React-Native-5x048oii>
