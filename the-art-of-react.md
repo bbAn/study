@@ -2332,7 +2332,7 @@ const Average = () => {
 export default Average;
 ```
 
-8.6.1 로컬 변수 사용하기    
+#### 8.6.1 로컬 변수 사용하기    
 컴포넌트 로컬 변수를 사용해야 할 때도 useRef를 활용할 수 있음    
 컴포넌트 안에서 조회 및 수정 할 수 있는 변수를 관리하는 용도   
 로컬 변수란 렌더링과 상관없이 바뀔 수 있는 값을 의미   
@@ -2345,7 +2345,7 @@ useRef 로 관리하고 있는 변수는 설정 후 바로 조회 할 수 있음
 * 외부 라이브러리를 사용하여 생성된 인스턴스
 * scroll 위치 등
 
-클래스형 컴포넌트
+클래스형 컴포넌트에서의 로컬 변수 사용   
 
 ```JS
 import React, { Component } from 'react';
@@ -2369,7 +2369,7 @@ class MyComponent extends Component {
 export default Mycomponent;
 ```
 
-함수형 컴포넌트 
+함수형 컴포넌트에서의 로컬 변수 사용   
 
 ```JS
 import React, {useRef} from 'react';
