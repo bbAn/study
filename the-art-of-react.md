@@ -990,7 +990,7 @@ const nextForm = {
 reference의 줄임말. getElementById, querySelector 처럼 DOM에 직접 접근 할 때 사용    
    
    
-ValidationSample.js 생성 (
+ValidationSample.js 생성   
 ```JS
 import React, { Component } from "react";
 import './ValidationSample.css'
