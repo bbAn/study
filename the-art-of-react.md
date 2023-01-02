@@ -1319,7 +1319,20 @@ const IterationSample = () => {
 
 export default IterationSample;
 ```
-   
+
+배열 안의 원소가 가지고 있는 고유한 값이 없다면 map() 함수를 사용 할 때 설정하는 콜백함수의 두번째 파라미터 index 를 key 로 사용함   
+
+```JS
+<div>
+  {users.map((user, index) => (
+    <User user={user} key={index} />
+  ))}
+</div>
+
+const list = data.map(
+  (info, index) => (<PhoneInfo key={index} info={info}/>)
+);
+```
 
 ### 6.4 응용 
 
