@@ -987,7 +987,7 @@ const nextForm = {
 ### 5.1 ref는 어떤 상황에서 사용해야 할까?
 
 일반 HTML에서 DOM요소에 이름을 달 때 id를 사용하는 것처럼 리액트 내부에서 DOM에 이름을 다는 것   
-reference의 줄임말. DOM을 직접적으로 건드려야 할 때 사용   
+reference의 줄임말. getElementById, querySelector 처럼 DOM에 직접 접근 할 때 사용    
    
    
 ValidationSample.js 생성 (
