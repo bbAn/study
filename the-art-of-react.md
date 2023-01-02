@@ -1408,7 +1408,8 @@ export default IterationSample;
 
 
 #### 6.4.3 데이터 제거 기능 구현하기      
-불변성을 유지하면서 배열의 특정 항목을 지울 때는 배열 내장 함수 filter를 사용함
+불변성을 유지하면서 배열의 특정 항목을 지울 때는 배열 내장 함수 filter를 사용함   
+특정 조건에 부합되는 원소들의 새 배열을 만들어줌
 
 예시)
 ```JS
@@ -1441,7 +1442,7 @@ const IterationSample = () => {
     setInputText(''); // inputText를 비운다.
   }
   const onRemove = id => {
-    const nextNames = names.filter(name => name.id !== id);
+    const nextNames = names.filter(name => name.id !== id); // id와 name.id와 같지 않은 원소를 제외한 새 배열을 만들어줌 
     setNames(nextNames);
   }
   const namesList = names.map(name => ( // 추가 할 땐 없던 괄호가 생겼다.. 단순 코드 구분 때문인가.. 괄호가 없어도 실행은 된다
