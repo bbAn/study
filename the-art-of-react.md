@@ -1402,11 +1402,11 @@ export default IterationSample;
 리액트에서 상태를 업데이트할 때는 기존 상태를 그대로 두면서 새로운 값을 상태로 설정해야함    
 불변성 유지를 해 주어야 컴포넌트의 성능을 최적화 할 수 있음 
 push, splice, unshift, pop, sort 같은 내장함수는 배열 자체를 직접 수정하기 때문에       
-기존의 배열에 기반하여 새 배열을 만들어내는 함수인 concat, slice, map, filter 같은 함수를 사용해야함   
+기존의 배열에 기반하여 새 배열을 만들어내는 함수인 concat, slice, map, filter 같은 함수를 사용하거나 spread 문법 사용   
 
 #### 6.4.3 데이터 제거 기능 구현하기      
 불변성을 유지하면서 배열의 특정 항목을 지울 때는 배열 내장 함수 filter를 사용함   
-특정 조건에 부합되는 원소들의 새 배열을 만들어줌
+특정 조건에 부합되는 원소들을 추출하여 새 배열을 만들어줌
 
 예시)
 ```JS
@@ -1439,7 +1439,7 @@ const IterationSample = () => {
     setInputText(''); // inputText를 비운다.
   }
   const onRemove = id => {
-    const nextNames = names.filter(name => name.id !== id); // id와 name.id와 같지 않은 원소를 제외한 새 배열을 만들어줌 
+    const nextNames = names.filter(name => name.id !== id); // id와 name.id와 일치하지 않은 원소만 추출해 새 배열을 만듦 = name.id 가 id 인 것을 제거함
     setNames(nextNames);
   }
   const namesList = names.map(name => ( // 추가 할 땐 없던 괄호가 생겼다.. 단순 코드 구분 때문인가.. 괄호가 없어도 실행은 된다
@@ -1459,6 +1459,8 @@ const IterationSample = () => {
 };
 ```
 
+#### 데이터 수정 기능 구현하기 
+는 책에 없지만 < 배열 항목 수정하기 <https://react.vlpt.us/basic/15-array-modify.html> > 참고 
 
 ### 6.5 정리   
 
