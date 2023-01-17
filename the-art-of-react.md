@@ -580,9 +580,9 @@ export default EventPractice;
    
 #### 4.2.2 onChange 이벤트 핸들링하기   
    
-e 객체는 SyntheticEvent로 웹 브라우저의 네이티브 이벤트를 감싸는 객체
-네이티브 이벤트와 인터페이스가 같음 
-SyntheticEvent는 네이티브 이벤트와 달리 이벤트가 끝나고 나면 이벤트가 초기화 되어 정보를 참조 할 수 없음
+e 객체는 SyntheticEvent로 웹 브라우저의 네이티브 이벤트를 감싸는 객체   
+네이티브 이벤트와 인터페이스가 같음    
+SyntheticEvent는 네이티브 이벤트와 달리 이벤트가 끝나고 나면 이벤트가 초기화 되어 정보를 참조 할 수 없음   
    
 state에 input 값 담기
 
