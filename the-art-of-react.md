@@ -584,7 +584,7 @@ e 객체는 SyntheticEvent로 웹 브라우저의 네이티브 이벤트를 감�
 네이티브 이벤트와 인터페이스가 같음    
 SyntheticEvent는 네이티브 이벤트와 달리 이벤트가 끝나고 나면 이벤트가 초기화 되어 정보를 참조 할 수 없음   
    
-state에 input 값 담기
+##### 4.2.2.2 state에 input 값 담기
 
 ```JS
 import React, { Component } from 'react';
@@ -621,7 +621,7 @@ class EventPractice extends Component {
 export default EventPractice;
 ```
    
-버튼을 누를 때 comment 값을 공백으로 설정   
+##### 4.2.2.3 버튼을 누를 때 comment 값을 공백으로 설정   
    
 ```JS
 import React, { Component } from 'react';
