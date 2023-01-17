@@ -278,7 +278,7 @@ import React, { Component } from 'react';
 class Counter extends Component {
 
   constructor(props) { //constructor: 컴포넌트의 생성자 메서드. super(props)를 반드시 호출
-    super(props);
+    super(props); // 이 함수가 호출되면 현재 클래스형 컴포넌트가 상속받고 있는 리액트의 Component 클래스가 지닌 생성자 함수를 호출 해줌
 
     //state의 초기 value 설정하기. 객체 형식이어야함 값이 여러개 있을 수 있음
     this.state = {
