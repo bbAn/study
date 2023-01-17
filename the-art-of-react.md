@@ -240,6 +240,23 @@ const MyComponent = ({ name, children }) => {
 추후 정리
 
 
+#### 3.3.7 클래스형 컴포넌트에서 props 사용하기
+
+props를 사용할 때는 render 함수에서 this.props를 조회하면 됨   
+
+`JS
+class MyComponent extends Component {
+  render() {
+    const { name, favoriteNumber, children } = this.props; // 비구조화 할당
+    
+    return (
+      ...
+    )
+  }
+}
+`
+
+
 ### 3.4 state
 
 컴포넌트 자체적으로 지닌 값으로 컴포넌트 내부에서 업데이트 할 수 있는 값
