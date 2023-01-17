@@ -244,7 +244,7 @@ const MyComponent = ({ name, children }) => {
 
 props를 사용할 때는 render 함수에서 this.props를 조회하면 됨   
 
-`JS
+```JS
 class MyComponent extends Component {
   render() {
     const { name, favoriteNumber, children } = this.props; // 비구조화 할당
@@ -254,7 +254,7 @@ class MyComponent extends Component {
     )
   }
 }
-`
+```
 
 
 ### 3.4 state
