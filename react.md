@@ -38,3 +38,9 @@ import ExportComponent from "./ExportComponent.js"
 ## useState함수형 업데이트   
 
 <https://velog.io/@tjdgus0528/React-Native-5x048oii>
+
+## Build Your Own React   
+React를 처음부터 개발하는 과정을 다룸.   
+
+원문 <https://pomb.us/build-your-own-react/>   
+한글 번역 <https://bluewings.github.io/build-your-own-react/>
