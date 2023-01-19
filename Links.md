@@ -22,3 +22,6 @@
 
 * TechBlogPosts (기술 블로그 모음)   
 <https://techblogposts.com/>
+
+* 사람인 접근성 회고   
+<https://saramin.github.io/2023-01-02-saramin-a11y/>
