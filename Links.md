@@ -18,4 +18,7 @@
 <https://uiverse.io/>
 
 * NAVER FE news   
-https://github.com/naver/fe-news
+<https://github.com/naver/fe-news>
+
+* TechBlogPosts (기술 블로그 모음)   
+<https://techblogposts.com/>
