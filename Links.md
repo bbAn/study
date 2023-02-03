@@ -30,3 +30,6 @@
 
 * 클래스101의 디자인 시스템, One Product System   
 <https://medium.com/class101/%ED%81%B4%EB%9E%98%EC%8A%A4101%EC%9D%98-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C-one-product-system-35681c551343> 
+
+* 개인 블로그   
+<https://jintrue.tistory.com/>
