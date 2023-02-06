@@ -35,6 +35,10 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 
 <https://blogs.windows.com/msedgedev/2023/01/17/the-truth-about-css-selector-performance/>
 
+[참고] Analyze selector performance during Recalculate Style events
+<https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/evaluate-performance/selector-stats>
+
+
 
 ## Rem 그리고 Em, 언제 써야 할까   
 <https://webdesign.tutsplus.com/ko/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984>
