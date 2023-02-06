@@ -4,4 +4,5 @@ sort함수는 사용하면 원본도 바꾸기 때문에
 구조분해 할당   
 <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
 
-
+Spread syntax (...)   
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
