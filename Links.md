@@ -1,6 +1,3 @@
-* Rem 그리고 Em, 언제 써야 할까   
-<https://webdesign.tutsplus.com/ko/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984>
-
 * Toast UI   
 <https://ui.toast.com/>
 
@@ -27,9 +24,6 @@
 
 * 사람인 접근성 회고   
 <https://saramin.github.io/2023-01-02-saramin-a11y/>
-
-* 클래스101의 디자인 시스템, One Product System   
-<https://medium.com/class101/%ED%81%B4%EB%9E%98%EC%8A%A4101%EC%9D%98-%EB%94%94%EC%9E%90%EC%9D%B8-%EC%8B%9C%EC%8A%A4%ED%85%9C-one-product-system-35681c551343> 
 
 * 개인 블로그   
 <https://jintrue.tistory.com/>
