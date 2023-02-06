@@ -33,4 +33,4 @@ To-Be
 이 튜토리얼은 Edge 개발자 도구(Chrome은 지원하지 않음)의 Performance(성능) 탭을 통해 대상 페이지를 프로파일링 한 후,    
 Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉터들과 실행 시간(Selector Stats 결과 탭)을 확인해 볼 수 있는 방법을 설명한다.   
 
-https://blogs.windows.com/msedgedev/2023/01/17/the-truth-about-css-selector-performance/
+<https://blogs.windows.com/msedgedev/2023/01/17/the-truth-about-css-selector-performance/>
