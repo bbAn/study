@@ -22,3 +22,5 @@ Promise, async/await, setTimeout이 브라우저에서 어떻게 동작하는지
 
 # TS
 
+## TypeScript에서 string key로 객체에 접근하기   
+<https://soopdop.github.io/2020/12/01/index-signatures-in-typescript/>
