@@ -43,3 +43,6 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 ## Rem 그리고 Em, 언제 써야 할까   
 <https://webdesign.tutsplus.com/ko/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984>
 
+## @property   
+<https://developer.mozilla.org/en-US/docs/Web/CSS/@property>
+
