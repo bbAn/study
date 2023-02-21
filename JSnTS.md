@@ -8,7 +8,7 @@ sort함수는 사용하면 원본도 바꾸기 때문에
 <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
 
 * Spread syntax (...)   
-<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>
+<https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>   
 
 
 ## 자바스크립트는 어떻게 약속을 지킬까?
@@ -16,8 +16,12 @@ sort함수는 사용하면 원본도 바꾸기 때문에
 Promise, async/await, setTimeout이 브라우저에서 어떻게 동작하는지를 ECMAScript 표준 문서를 기반으로 추적하고 정리한 글이다.    
 비동기 상태에 대한 처리는 항상 많이 이야기되었던 주제이기도 하지만 근본적으로 웹의 기능을 이해하기 위해 어떻게 접근해야 하는지를 알려주는 좋은 글   
 
-<https://ui.toast.com/posts/ko_20220725>
+<https://ui.toast.com/posts/ko_20220725>   
 
+
+## 자바스크립트 async와 await   
+
+<https://joshua1988.github.io/web-development/javascript/js-async-await/>
 
 
 # TS
