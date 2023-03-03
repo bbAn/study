@@ -3,7 +3,7 @@
 
 * 리액트를 다루는 기술 교재 정리 ([the-art-of-react.md](./the-art-of-react.md))   
 * 리액트 관련 ([react.md](./react.md))   
-* 뷰 관련([vue.md] (./vue.md))   
+* 뷰 관련 ([vue.md] (./vue.md))   
 * React-Testing-Library ([React-Testing-Library.md](./React-Testing-Library.md))     
 * HTML and CSS ([HTMLnCSS.md](./HTMLnCSS.md))   
 * JS and TS ([JSnTS.md](./JSnTS.md))     
