@@ -44,3 +44,11 @@ React를 처음부터 개발하는 과정을 다룸.
 
 원문 <https://pomb.us/build-your-own-react/>   
 한글 번역 <https://bluewings.github.io/build-your-own-react/>
+
+## React의 구조와 JSX    
+<https://gun-bro.tistory.com/4?category=911585>
+
+## [React.js]라우터   
+<https://gun-bro.tistory.com/11>
+
+
