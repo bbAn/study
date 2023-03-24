@@ -21,7 +21,29 @@ Promise, async/await, setTimeout이 브라우저에서 어떻게 동작하는지
 
 ## 자바스크립트 async와 await   
 
-<https://joshua1988.github.io/web-development/javascript/js-async-await/>
+<https://joshua1988.github.io/web-development/javascript/js-async-await/>   
+
+
+## .fill()   
+
+```TS
+private getDayCategories(): string[] {
+        const {selectedDateTime} = this.state
+
+        return new Array(getLastDayOfMonth(selectedDateTime.getFullYear(), selectedDateTime.getMonth() + 1)).fill("")
+            .map((value, index) => `${index + 1}일`)
+    }
+```
+
+```TS 
+// ES6 문법으로 이차원 배열 생성하는 방법
+const arr = new Array(5).fill(0).map(() => new Array(4));
+```
+
+
+## 2차원 배열 new Array().fill()로 값 할당할 때 주의할 점   
+
+<https://aeunhi99.tistory.com/257>   
 
 
 # TS
