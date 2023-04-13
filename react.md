@@ -49,6 +49,15 @@ React를 처음부터 개발하는 과정을 다룸.
 <https://gun-bro.tistory.com/4?category=911585>
 
 ## [React.js]라우터   
-<https://gun-bro.tistory.com/11>
+<https://gun-bro.tistory.com/11>   
+<https://gongbu-ing.tistory.com/45>   
+
+## history.push()로 페이지 이동시 props 넘겨주기
+<https://velog.io/@dhlee91/this.props.history.push%EB%A1%9C-props-%EB%84%98%EA%B2%A8%EC%A3%BC%EA%B8%B0>   
+
+## [React] 로딩과 에러를 다루는 매뉴얼   
+<https://10000cow.tistory.com/entry/React-%EB%A1%9C%EB%94%A9%EA%B3%BC-%EC%97%90%EB%9F%AC%EB%A5%BC-%EB%8B%A4%EB%A3%A8%EB%8A%94-%EB%A7%A4%EB%89%B4%EC%96%BC>   
+
+
 
 
