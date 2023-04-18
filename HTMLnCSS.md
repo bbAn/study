@@ -52,7 +52,10 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 ## How to Create CSS Conic Gradients for Pie Charts and More   
 <https://www.sitepoint.com/create-css-conic-gradients-pie-charts/>   
 
-## CSS inset-block
+## CSS inset   
+<https://developer.mozilla.org/en-US/docs/Web/CSS/inset>   
+
+## CSS inset-block   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block>   
 
-
+## z-index: auto   
