@@ -63,3 +63,72 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 
 ## CSS_Container_Queries   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries>    
+
+## styled-components에서 props 사용하여 스타일값 지정하기
+```TS
+export const IconButtonCommon = css<{ translucent?: boolean }>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  ${(props) => {
+    const size = props.translucent ? "1.5625rem" : "2rem";
+    return `
+      width: ${size};
+      height: ${size};
+    `;
+  }}
+  
+export const IconButtonGray = styled.button<{ translucent?: boolean }>`
+  ${IconButtonCommon};
+  background: ${(props) => props.translucent ? "rgba(0 0 0 / 0.3)" : colors.amsGray01};
+`;
+
+
+export const FilterItemStyle = styled.li<{
+  isOn?: boolean;
+  customText: string;
+}>`
+  width: ${(props) => (props.customText === "pF" ? "40%" : "60%")};
+  height: 2rem;
+  word-break: keep-all;
+
+  * {
+    vertical-align: middle;
+  }
+  ${(props) =>
+    props.isOn &&
+    css`
+      ${FilterLink} {
+        width: 100%;
+        color: ${colors.white};
+        background-color: #2c364e;
+        border-radius: 100px;
+        display: block;
+        text-align: center;
+        font-weight: 500;
+        word-break: keep-all;
+      }
+    `}
+`;
+
+
+export const SideBar = styled.div<{ showAdvanceSearch: boolean }>`
+  background-color: #e3e7ee;
+  height: 100%;
+  text-decoration: none;
+  transition: 3s all ease-in-out;
+  &.show-sidebar {
+    ${(props) =>
+      props.showAdvanceSearch == true
+        ? css`
+            width: 0;
+            overflow: hidden;
+          `
+        : css`
+            width: 100%;
+            overflow: initial;
+            transition: 3s all ease-in-out;
+          `};
+  }
+`
+```
