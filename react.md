@@ -59,5 +59,43 @@ React를 처음부터 개발하는 과정을 다룸.
 <https://10000cow.tistory.com/entry/React-%EB%A1%9C%EB%94%A9%EA%B3%BC-%EC%97%90%EB%9F%AC%EB%A5%BC-%EB%8B%A4%EB%A3%A8%EB%8A%94-%EB%A7%A4%EB%89%B4%EC%96%BC>   
 
 
+## 클래스형 컴포넌트에서 input file과 버튼 연결하기 
+
+```TS
+class AssetSummaryCard extends Component<Props, State> {
+  private fileInput: React.RefObject<HTMLInputElement>; // 1
+  constructor(props: Readonly<Props>) {
+        super(props);
+        this.fileInput = React.createRef(); // 2
+        this.state = {
+           ...
+        };
+        this.handleUploadButtonClick = this.handleUploadButtonClick.bind(this); // 3
+    }
+    
+    render() {
+      private handleUploadButtonClick() { // 4
+        this.fileInput.current?.click();
+      }
+      
+      
+      <>
+        <IconButtonGray translucent
+                        className="btn-upload"
+                        aria-label="btn-upload"
+                        onClick={this.handleUploadButtonClick} // 5
+        />
+        <input type="file"
+               aria-label="input-image"
+               ref={this.fileInput}  // 6
+               onChange={async (e) => {
+                   await this.handleAttachedFile(e)
+               }}/>
+      </>
+    }
+}
+```
+
+
 
 
