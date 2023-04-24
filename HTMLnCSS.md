@@ -66,6 +66,13 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 
 ## styled-components에서 props 사용하여 스타일값 지정하기
 ```TS
+
+const PentagonContainer = styled.div<{ width?: number; height?: number }>`
+  position: relative;
+  width: ${({ width }) => width ?? 500}px; // ??은 width로 전달된 값이 없으면 기본적으로 500px로 지정
+  height: ${({ height }) => height ?? 500}px;
+`
+
 export const IconButtonCommon = css<{ translucent?: boolean }>`
   display: inline-flex;
   align-items: center;
