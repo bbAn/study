@@ -96,7 +96,7 @@ class AssetSummaryCard extends Component<Props, State> {
 }
 ```
 
-## JSON 데이터 값에서 특정부분을 html 태그로 감싸기
+## JSON 데이터 값 중 특정부분html 태그로 감싸기
 ```TS
 
   const dataTableScenario = [
