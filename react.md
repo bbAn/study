@@ -96,6 +96,100 @@ class AssetSummaryCard extends Component<Props, State> {
 }
 ```
 
+## JSON 데이터 값에서 특정부분 html 태그로 감싸기
+```TS
 
+  const dataTableScenario = [
+    {
+      id: "region_id",
+      label: "Region",
+      value: detailScenario.region,
+    },
+    {
+      id: "factory",
+      label: "Factory",
+      value: detailScenario.factory,
+    },
+    {
+      id: "substation",
+      label: "Substation",
+      value: detailScenario.substation,
+    },
+    {
+      id: "assetsevaluated",
+      label: "No. of Assets Evaluated",
+      value: detailScenario.assetsevaluated,
+    },
+    {
+      id: "oldest_asset",
+      label: "Oldest Asset Age (yrs)",
+      value: detailScenario.oldest_asset,
+    },
+    {
+      id: "young_asset",
+      label: "Youngest Asset Age (yrs)",
+      value: detailScenario.young_asset,
+    },
+    {
+      id: "real_life",
+      label: "Real Life (yrs)",
+      value: detailScenario.real_life,
+    },
+    {
+      id: "standard_deviation",
+      label: "Standard Deviation",
+      value: detailScenario.standard_deviation,
+    },
+    {
+      id: "rebuild_age",
+      label: "Asset Rebuild Age (yrs)",
+      value: detailScenario.rebuild_age,
+    },
+
+    //
+    {
+      id: "replacement_cost",
+      label: "Replacement Cost ($)",
+      value: detailScenario.replacement_cost,
+    },
+    {
+      id: "rebuild_cost",
+      label: "Rebuild Cost ($)",
+      value: detailScenario.rebuild_cost,
+    },
+  ];
+    
+<TableInfo className="table-info">
+  <tbody>
+    {dataTableScenario.map(({ id, value, label }) => {
+      const labelParts = label.split("("); // --- 첫 "("를 기준으로 문자열 분리
+      return (
+        <tr key={id}>
+          <SubSubject widthTable="capital" scope="row">
+            {labelParts[0]} <span> {labelParts.length > 1 && `(${labelParts[1]}`}</span>  // -- 분리된 문자열 적용
+          </SubSubject>
+          <FieldValue widthTable="capital" className="field-value">
+            {listScenario.results.length > 0 ? value : ""}
+          </FieldValue>
+        </tr>
+      );
+    })}
+    <tr>
+      <SubSubject widthTable="capital" scope="row">
+        <TitleWrap>
+          <div className="text-left">Failure Probability Threshold</div>
+          <div className="text-right">(%)</div>
+        </TitleWrap>
+      </SubSubject>
+      <FieldValue widthTable="capital" className="field-value">
+        {listScenario.results.length > 0
+          ? detailScenario.pf_threshold
+          : ""}
+      </FieldValue>
+    </tr>
+  </tbody>
+</TableInfo>
+
+```
 
 
