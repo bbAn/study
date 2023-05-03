@@ -64,6 +64,9 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 ## CSS_Container_Queries   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries>    
 
+## :indeterminate
+<https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate>
+
 ## styled-components에서 props 사용하여 스타일값 지정하기
 ```TS
 
