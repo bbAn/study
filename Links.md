@@ -16,7 +16,7 @@
 * UIverse   
 <https://uiverse.io/>
 
-* NAVER FE news   
+* NAVER FE news (매월 첫째 주 수요일, 월 1회 발행)   
 <https://github.com/naver/fe-news>
 
 * TechBlogPosts (기술 블로그 모음)   
