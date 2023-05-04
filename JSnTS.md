@@ -47,6 +47,8 @@ const arr = new Array(5).fill(0).map(() => new Array(4));
 
 ## 피셔 예이츠 알고리즘
 
+<https://velog.io/@choisy/Js-%ED%94%BC%EC%85%94-%EC%98%88%EC%9D%B4%EC%B8%A0-%EC%85%94%ED%94%8C-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Fisher-Yates-Shuffle>   
+
 # TS
 
 ## TypeScript에서 string key로 객체에 접근하기   
