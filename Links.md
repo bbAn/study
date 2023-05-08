@@ -8,7 +8,7 @@
 <https://yozm.wishket.com/magazine/detail/1836/>
 
 * 번역 - github에서 자주 쓰이는 영어 정리   
-<https://tagilog.tistory.com/588>
+<https://tagilog.tistory.com/588>   
 <https://blog.ull.im/engineering/2019/03/10/logs-on-git.html> 
 
 * input 태그 자동완성 시 배경색 변경    
