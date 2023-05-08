@@ -145,4 +145,13 @@ export const SideBar = styled.div<{ showAdvanceSearch: boolean }>`
           `};
   }
 `
+
+export const InputRadio = styled.input.attrs({
+  type: "checkbox",
+})``;
+
+export const InputRadio = styled.input.attrs({
+  type: "radio",
+})``;
+
 ```
