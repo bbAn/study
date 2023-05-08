@@ -146,7 +146,7 @@ export const SideBar = styled.div<{ showAdvanceSearch: boolean }>`
   }
 `
 
-export const InputRadio = styled.input.attrs({
+export const InputCheckbox = styled.input.attrs({
   type: "checkbox",
 })``;
 
