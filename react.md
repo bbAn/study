@@ -189,7 +189,162 @@ class AssetSummaryCard extends Component<Props, State> {
     </tr>
   </tbody>
 </TableInfo>
+```
+
+## 부모 컴포넌트에서 받은 props를 자식 컴포넌트 state에서 변경하고 다시 부모에게 넘겨주기
+부모 컴포넌트의 특정 영역을 클릭 했을 때의 상태를 자식 컴포넌트의 props로 넘겨   
+자식 컴포넌트에서 처리하는 state를 적용시킨 후 다시 부모 컴포넌트로 전달하는 방식   
+
+### 부모 컴포넌트
+
+```TS
+import React, { Component } from 'react';
+
+
+// 부모 컴포넌트는 isClearOverlay라는 상태를 가지고 있으며, 
+// 초기값은 false 
+// 이 상태는 자식 컴포넌트에게 넘겨주는 prop으로 사용됨
+
+interface State {
+  isClearOverlay: boolean;
+}
+
+class ParentComponent extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      isClearOverlay: false,
+    };
+  }
+
+  // handleChildState라는 함수를 통해 자식 컴포넌트로부터 상태를 받아와 부모의 상태를 업데이트. 
+  // 이 함수는 자식 컴포넌트에게 callback으로 제공됨
+  handleChildState = (clearOverlay: boolean) => {
+    this.setState({ isClearOverlay: clearOverlay });
+    // console.log("자식에서 받아온 state", this.state.isClearOverlay)
+  }
+
+  render() {
+    return <div onClick={(e)=> {
+              // 현재 클릭된 target에 특정 클래스 이름이 포함되어 있는지를 확인하고, 그에 따라 isClearOverlay 상태를 업데이트 
+              const element = e.target as Element; // 현재 선택된 target. 리액트에서는 as Element를 사용해야함
+              const classNames = ["heatmap-point", "overlay", "text-link"];
+              const containsClass = classNames.some(name => element.classList.contains(name));
+
+              this.setState({
+                isClearOverlay: !containsClass,
+                isShowAssetSubstation: containsClass
+                })
+              }}
+            >
+      // ChildComponent를 렌더링하고, isClearOverlay 상태와 handleChildState 함수를 prop으로 넘겨줌.
+      <ChildComponent isClearOverlay={this.state.isClearOverlay} // 자식에게 넘겨주는 props
+                      callback={this.handleChildState} // 자식에게 넘겨주는 함수
+      />
+    </div>
+  }
+}
+```
+
+
+### 자식 컴포넌트   
+
+```TS
+import React, { Component } from 'react';
+
+// 부모 컴포넌트로부터 isClearOverlay 상태와 callback 함수를 prop으로 받아옴
+interface Props {
+  isClearOverlay?: boolean; 
+  callback?: (clearOverlay: boolean) => void;
+}
+
+// clearOverlay 상태를 가지고 있으며, 
+// 부모 컴포넌트로부터 받아온 callback 함수를 사용해 이 상태를 부모 컴포넌트에게 전달
+interface State {
+  clearOverlay: boolean;
+}
+
+class ChildComponent extends Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clearOverlay: false,
+    };
+  }
+
+  render() {
+    const {clearOverlay} = this.state;
+    const {callback} = this.props;
+
+    {dataHeatMap?.length > 0 &&
+    dataHeatMap?.map((data, index) => {
+      return (
+          <tr key={\`_${index}_${Math.random()}\`}>
+            <td key={\`ab_${index}_${Math.random()}\`}>
+              {data.criticality_range}
+            </td>
+            {data.pof.map((detail, idx) => {
+              const mapping = {
+                assetCount: detail.val,
+                criticality: dataCoF[idx],
+                failureProbability: data.criticality_range,
+              };
+              // customBackground.cof가 idx와 같고 customBackground.pof가 index와 같거나,
+              // customBackground.cof가 빈 문자열인 경우, customClass는 "" (빈 문자열).
+              // 그 외의 경우, customClass는 "active"
+              const customClass =
+                  (customBackground.cof === idx &&
+                      customBackground.pof === index) ||
+                  customBackground.cof === "" || this.props.isClearOverlay // 부모로부터 받은 isClearOverlay prop에 따라 "active"가 추가되거나 제거
+                      ? ""
+                      : "active";
+              const coordinates = {
+                cof: idx,
+                pof: index,
+              };
+
+              return (
+                  <PointStyle
+                      key=index
+                      bgColor={detail.color}
+                      hasValue={!!detail.val}
+                      className="heatmap-point"
+                      onClick={() => {
+                        this.setState(
+                            {
+                              customBackground: !detail.val // 값이 없으면
+                                  ? {
+                                    cof: "",
+                                    pof: "",
+                                  }
+                                  : coordinates,
+                              clearOverlay: !detail.val,
+                            }, () => {}
+                        );
+                        callback && callback(clearOverlay); // 부모에게서 받은 callback props가 있으면 callback 함수에 clearOverlay값을 인자로 넘겨줌
+                      }}
+                  >
+                    <div className={\`overlay ${customClass}\`}>
+                      <Link
+                          className={"text-link"}
+                          to={{
+                            pathname: "/risk-matrix",
+                          }}
+                      >
+                        {detail.val}
+                      </Link>
+                    </div>
+                  </PointStyle>
+              );
+            })}
+          </tr>
+      );
+    })}
+  }
+}
 
 ```
+
+
 
 
