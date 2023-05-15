@@ -321,7 +321,9 @@ class ChildComponent extends Component<Props, State> {
                               clearOverlay: !detail.val,
                             }, () => {}
                         );
-                        callback && callback(clearOverlay); // 부모에게서 받은 callback props가 있으면 callback 함수에 clearOverlay값을 인자로 넘겨줌
+                        
+                        // 부모에게서 받은 callback props가 있으면 callback 함수에 clearOverlay값을 인자로 넘겨줌
+                        callback && callback(clearOverlay); 
                       }}
                   >
                     <div className={\`overlay ${customClass}\`}>
