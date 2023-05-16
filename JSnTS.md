@@ -24,6 +24,20 @@ Promise, async/await, setTimeout이 브라우저에서 어떻게 동작하는지
 <https://joshua1988.github.io/web-development/javascript/js-async-await/>   
 
 
+## .some()
+배열 메서드   
+배열 내의 항목 중 특정 조건에 해당하는 것이 하나라도 존재하는지 확인      
+
+<https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/some> 
+
+
+## .every()
+배열 메서드   
+배열 내의 모든 항목이 특정 조건을 만족하는지 확인   
+
+<https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/every>
+
+
 ## .fill()   
 
 ```TS
