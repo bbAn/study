@@ -226,10 +226,16 @@ class ParentComponent extends Component<Props, State> {
 
   render() {
     return <div onClick={(e)=> {
+              
               // 현재 클릭된 target에 특정 클래스 이름이 포함되어 있는지를 확인하고, 그에 따라 isClearOverlay 상태를 업데이트 
               const element = e.target as Element; // 현재 선택된 target. 리액트에서는 as Element를 사용해야함
               const classNames = ["heatmap-point", "overlay", "text-link"];
+              
+              // some: 배열 메서드 
+              // 배열의 각 요소에 대해 제공된 함수를 실행 
+              // 함수가 한 번이라도 true를 반환하면, some 메서드는 true를 즉시 반환하고 더 이상 실행하지 않음
               const containsClass = classNames.some(name => element.classList.contains(name));
+              
 
               this.setState({
                 isClearOverlay: !containsClass,
