@@ -353,6 +353,83 @@ class ChildComponent extends Component<Props, State> {
 
 ```
 
+## Redux를 사용해 헤더정보 가져오기
+
+클래스형 컴포넌트로 작성된 Header에서 Redux props로 제공해 하위 컴포넌트에서 정보를 확인하는 방법   
+인데 Redux관련 다른 설정이 필요한데 우선 내가 사용했던 내용 위주로 정리
+
+### Header 
+header와 관련된 Redux 설정이 더 있으나 아직은 모르는 부분이라...      
+
+```TS
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {RootState} from "../app/store";
+
+interface Props extends RootState {
+...
+}
+
+export const TOP_NAV_ITEMS = {
+  MAIN: "main",
+  REGION: "region",
+  FACTORY: "factory",
+  SUBSTATION: "substation",
+  ASSET: "asset",
+};
+
+class Header extends Component<Props, State> {
+  render() {
+    const { header: LevelState } = this.props;
+
+    return (
+      <div>
+        <Header/>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state: RootState) => ({
+  header: state.header,
+});
+
+export default connect(mapStateToProps)(Header);
+```
+
+### 하위 컴포넌트
+```TS
+import React, {Component} from "react";
+import {RootState} from "../app/store";
+import {connect} from "react-redux";
+import {TOP_NAV_ITEMS} from "../header/HeaderAMS";
+
+interface Props extends RootState { // RootState를 사용해야 헤더에서 넘겨주는 header props를 받아 사용할 수 있음
+...
+}
+
+class ChildComponent extends Component<Props, State> {
+  render() {
+    const {header} = this.props;
+    return (
+      <ChildContainer withHierarchy={header.level != TOP_NAV_ITEMS.MAIN}>
+        {this.renderMainControll()}
+        {this.renderHighCharts()}
+      </ChildContainer>
+    );
+  }
+}
+
+const mapStateToProps = (state: RootState) => {
+  return {
+    header: state.header
+  };
+}
+
+export default withRouter(
+    withTheme(connect(mapStateToProps)(ChildComponent))
+);
+```
 
 
 
