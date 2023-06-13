@@ -3,6 +3,8 @@
 ## </> htmx   
 <https://htmx.org/>   
 
+## 11 HTML best practices for login & sign-up forms
+<https://evilmartians.com/chronicles/html-best-practices-for-login-and-signup-forms>   
 
 
 # CSS
