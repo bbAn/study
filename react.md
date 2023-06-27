@@ -434,5 +434,35 @@ export default withRouter(
 ## React에서 Icon 다루기 with Typescript
 <https://blog.toycrane.xyz/react%EC%97%90%EC%84%9C-icon-%EB%8B%A4%EB%A3%A8%EA%B8%B0-59b6d987d61f>   
 
+## JavaScript의 Object를 Map으로 변환
 
+```TS
+class CofInformation extends Component<Props, State> {
+    constructor(props: Readonly<Props>) {
+        super(props);
+
+        this.state = {
+            cofParameters: new Map() // 초기값을 빈 Map으로 설정
+        }
+    }
+
+    private async refresh() {
+        const {dashboardRepository, selectedAsset} = this.props;
+        if (!selectedAsset.asset_id) return;
+
+        const cofParametersObject = await dashboardRepository.getCofParameters(selectedAsset.asset_id);
+        
+        // Object를 Map으로 변환
+        const cofParametersMap = new Map(Object.entries(cofParametersObject));
+
+        this.setState({
+            cofParameters: cofParametersMap
+        });
+    }
+}
+```
+
+Object.entries(cofParametersObject)는 주어진 객체의 [key, value] 쌍을 배열로 반환함   
+new Map()은 이 배열을 입력으로 받아 Map을 생성    
+이렇게 하면 객체가 Map으로 변환되어 상태에 저장
 
