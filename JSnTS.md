@@ -49,11 +49,15 @@ private getDayCategories(): string[] {
     }
 ```
 
+## .toLocaleString()
+
+<https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString>    
+
+## ES6 문법으로 이차원 배열 생성하는 방법   
+
 ```TS 
-// ES6 문법으로 이차원 배열 생성하는 방법
 const arr = new Array(5).fill(0).map(() => new Array(4));
 ```
-
 
 ## 2차원 배열 new Array().fill()로 값 할당할 때 주의할 점   
 
