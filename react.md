@@ -466,3 +466,149 @@ Object.entries(cofParametersObject)는 주어진 객체의 [key, value] 쌍을 �
 new Map()은 이 배열을 입력으로 받아 Map을 생성    
 이렇게 하면 객체가 Map으로 변환되어 상태에 저장
 
+## 현재 선택된 taget 외 클릭시 상태 변경 
+
+```TS
+// 함수형
+
+  const dropdownRef = useRef<any>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        imgRef.current !== event.target
+      ) {
+        setShowNotiList(false);
+      }
+    };
+    document.addEventListener("mouseup", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mouseup", handleOutsideClick);
+    };
+  }, []);
+
+  const notificationList = () => {
+    return (
+      <NotificationList ref={dropdownRef}> // dropdownRef
+        <Row justify="space-between" align="middle" className="p-4">
+          <div className="noti-container-title">
+            Unacknowledged Metric Messages
+          </div>
+          <Button className="all-history-btn" type="link">
+            All History
+            <RightOutlined color={blue17} />
+          </Button>
+        </Row>
+        {notifications.map((noti) => (
+          <Row className="noti-cell p-4">
+            <Col span={17}>{noti.message}</Col>
+            <Col span={7} className="noti-date">
+              {noti.timestamp}
+            </Col>
+          </Row>
+        ))}
+      </NotificationList>
+    );
+  };
+
+  const handleClick = () => {
+    setShowNotiList((prevState) => !prevState);
+  };
+
+  return (
+    <>
+      <Badge count={notifications.length} size="small" offset={[-2, 5]}>
+        <img
+          className="cursor-pointer"
+          src={SVGImages.ams.common.iconNotification()}
+          alt="Notification"
+          onClick={handleClick}
+          ref={imgRef} //imgRef
+        />
+      </Badge>
+
+      {showNotiList && notificationList()}
+    </>
+  );
+
+```
+
+```TS
+// 클래스형
+
+class YourComponent extends React.Component {
+  public or private dropdownRef: React.RefObject<any>;
+  public or private imgRef: React.RefObject<HTMLImageElement>;
+  
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      showNotiList: false
+    };
+    this.dropdownRef = React.createRef();
+    this.imgRef = React.createRef();
+  }
+
+  componentDidMount() {
+    document.addEventListener("mouseup", this.handleOutsideClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mouseup", this.handleOutsideClick);
+  }
+
+  handleOutsideClick = (event: MouseEvent) => {
+    if (
+      this.dropdownRef.current &&
+      !this.dropdownRef.current.contains(event.target as Node) &&
+      this.imgRef.current !== event.target
+    ) {
+      this.setState({ showNotiList: false });
+    }
+  };
+
+  private notificationList() {
+    return (
+      <NotificationList ref={dropdownRef}> // dropdownRef
+        <Row justify="space-between" align="middle" className="p-4">
+          <div className="noti-container-title">
+            Unacknowledged Metric Messages
+          </div>
+          <Button className="all-history-btn" type="link">
+            All History
+            <RightOutlined color={blue17} />
+          </Button>
+        </Row>
+        {notifications.map((noti) => (
+          <Row className="noti-cell p-4">
+            <Col span={17}>{noti.message}</Col>
+            <Col span={7} className="noti-date">
+              {noti.timestamp}
+            </Col>
+          </Row>
+        ))}
+      </NotificationList>
+    );
+  };
+
+  render() {
+    <>
+      <Badge count={notifications.length} size="small" offset={[-2, 5]}>
+        <img
+          className="cursor-pointer"
+          src={SVGImages.ams.common.iconNotification()}
+          alt="Notification"
+          onClick={handleClick}
+          ref={this.imgRef} //imgRef
+        />
+      </Badge>
+
+      {showNotiList && notificationList()}
+    </>
+  }
+}
+```
+
