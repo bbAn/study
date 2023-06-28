@@ -53,6 +53,9 @@ private getDayCategories(): string[] {
 
 <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString>    
 
+## 자바스크립트 맵 객체 (Javascript Map Object)    
+<https://wooncloud.com/104>    
+
 ## ES6 문법으로 이차원 배열 생성하는 방법   
 
 ```TS 
