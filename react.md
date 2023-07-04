@@ -1,5 +1,8 @@
 # React
 
+## Next.js 제대로 알기   
+<https://json.media/blog/proper_understading_of_nextjs>   
+
 ## export의 방식 차이
 
 ```JS
