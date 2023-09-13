@@ -71,6 +71,46 @@ const arr = new Array(5).fill(0).map(() => new Array(4));
 
 <https://velog.io/@choisy/Js-%ED%94%BC%EC%85%94-%EC%98%88%EC%9D%B4%EC%B8%A0-%EC%85%94%ED%94%8C-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98-Fisher-Yates-Shuffle>   
 
+## MutationObserver
+<https://developer.mozilla.org/ko/docs/Web/API/MutationObserver/observe>   
+
+MutationObserver 인터페이스는 DOM 트리의 변경을 감지하는 기능을 제공하는 Web API   
+다크, 화이트 모드 변경을 감지하기 위해 리액트에서 MutationObserver.observe()를 아래와 같이 사용했음   
+
+<https://developer.mozilla.org/ko/docs/Web/API/MutationObserver/observe>   
+
+```TS
+  private observer: MutationObserver | null = null;
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (this.state.isThemeChanged !== prevState.isThemeChanged) {
+      const targetNode = document.body;
+      const observerOptions = {
+        attributes: true,
+        attributeFilter: ["style"],
+        subtree: true,
+      };
+
+      this.observer = new MutationObserver((mutationsList, observer) => {
+        for (let mutation of mutationsList) {
+          if (mutation.type === "attributes") {
+            setTimeout(() => this.setState({ isThemeChanged: false }), 1000);
+          }
+        }
+      });
+
+      this.observer.observe(targetNode, observerOptions);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+```
+
 
 # TS
 
