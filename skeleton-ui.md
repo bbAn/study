@@ -1,5 +1,8 @@
 # Skeleton (Content Loader, Placeholder, Skeleton Loader ...)
 
+## 스켈레톤 로딩, 언제 사용해야 할까? — 헤이딜러 UX 스터디
+<https://medium.com/prnd/%EC%8A%A4%EC%BC%88%EB%A0%88%ED%86%A4-%EB%A1%9C%EB%94%A9-%EC%96%B8%EC%A0%9C-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%A0%EA%B9%8C-%ED%97%A4%EC%9D%B4%EB%94%9C%EB%9F%AC-ux-%EC%8A%A4%ED%84%B0%EB%94%94-00d2cc323b17>
+
 ## Create React Content Loader
 <https://skeletonreact.com/#gallery>
 
