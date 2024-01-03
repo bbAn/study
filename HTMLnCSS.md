@@ -71,7 +71,32 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 
 ## :focus-visible
 <https://hohoya33.tistory.com/93>   
-<https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible>   
+<https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible>  
+
+## :focus-within
+<https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within>
+<https://developer.mozilla.org/ko/docs/Web/CSS/:focus-within>
+
+## env
+<https://developer.mozilla.org/en-US/docs/Web/CSS/env>
+
+## backdrop-filter
+<https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter>
+
+## :placeholder-shown
+<https://developer.mozilla.org/en-US/docs/Web/CSS/:placeholder-shown>
+
+## clamp
+<https://developer.mozilla.org/en-US/docs/Web/CSS/clamp>
+
+### Fluid Typography
+<https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/>
+
+## CSS container queries
+<https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries>
+
+## prefers-reduced-motion
+<https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries>
 
 ## styled-components에서 props 사용하여 스타일값 지정하기
 ```TS
