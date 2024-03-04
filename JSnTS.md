@@ -53,6 +53,9 @@ private getDayCategories(): string[] {
 
 <https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString>    
 
+## .scrollIntoView()
+<https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView>
+
 ## 자바스크립트 맵 객체 (Javascript Map Object)    
 <https://wooncloud.com/104>    
 
