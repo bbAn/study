@@ -615,3 +615,184 @@ class YourComponent extends React.Component {
 }
 ```
 
+## ResizableTable 넓이 변경 시 다른 셀 너비는 변경되지 않고 테이블 전체 넓이가 넓어지도록
+
+```TS
+// ListUser.tsx
+
+const ListUser = ({setSelectedKeys, theme, userData, onReload}: Props) => {
+  const [activeRowKey, setActiveRowKey] = useState("");
+  const [totalColumnWidth, setTotalColumnWidth] = useState(2000);
+  const selectedRowKey = useRef("");
+
+  const onColumnResize = (newWidth: number) => {
+      setTotalColumnWidth((prevWidth) => prevWidth + newWidth);
+  };
+
+  const rowSelection: TableRowSelection<Account> = {
+      selectedRowKeys,
+      onChange: onSelectChange,
+      getCheckboxProps: (record: any) => {
+          return {
+              disabled: record.accountId === currentUserId,
+              name: record.role,
+          };
+      },
+  };
+
+  const handleRowClick = (record: any, e: React.MouseEvent<HTMLTableRowElement>) => {
+      record.editable = !record.editable;
+      selectedRowKey.current = record.accountId;
+
+      // e.target을 Element로 타입 선언하여 closest 메서드 사용 가능하게 함
+      const target = e.target as Element; // 또는 HTMLElement로 선언.
+
+      // 클릭된 요소와 가장 가까운 체크박스 또는 .ant-checkbox-inner 요소를 찾음.
+      const isCheckboxClick = target.closest('.ant-checkbox-wrapper, .ant-checkbox, .ant-checkbox-inner, input[type="checkbox"]');
+
+      // 체크박스 클릭 또는 이미 선택된 행을 클릭한 경우, 아무것도 하지 않음.
+      if (isCheckboxClick || activeRowKey === record.accountId) {
+          return;
+      }
+
+      // 그렇지 않은 경우, activeRowKey를 업데이트하여 배경색 변경.
+      setActiveRowKey(record.accountId);
+  };
+
+  return (
+    <ResizableTable
+        rowKey="accountId"
+        rowSelection={rowSelection}
+        rowClassName={(record) =>
+            record.accountId === activeRowKey ? "is-selected" : ""
+        }
+        dataSource={displayedUserData}
+        columns={columns}
+        onRow={(record) => ({
+            onClick: (e) => handleRowClick(record, e),
+        })}
+        onColumnResize={onColumnResize}
+        pagination={false}
+        onChange={onChange}
+        scroll={{x: totalColumnWidth, y: "71vh"}}
+        expandable={{
+            childrenColumnName: "invitedAccounts",
+            expandIcon: ({expanded, onExpand, record}) => {
+                return record.invitedAccounts ? (
+                    <img src={theme.getImage(SVGImages.ams.common.iconExpanded)}
+                         className={expanded ? "is-expanded" : ""}
+                         onClick={(e) => {
+                             e.stopPropagation();
+                             onExpand(record, e);
+                         }}
+                         alt={expanded ? "collapse" : "expand"}
+                    />
+                ) : null;
+            },
+        }}
+        excludedColumnKeys={["action"]}
+    />
+  )
+
+}
+
+```
+
+```TS
+// ResizableTable.tsx
+
+const ResizableTitle = (
+    props: React.HTMLAttributes<any> & {
+        isResizable: boolean;
+        onResize: (
+            e: React.SyntheticEvent<Element>,
+            data: ResizeCallbackData
+        ) => void;
+        width: number;
+    }
+) => {
+    const {onResize, width, isResizable, ...restProps} = props;
+
+    if (!width || !isResizable) {
+        return <th {...restProps} />;
+    }
+
+    return (
+        <Resizable
+            width={width}
+            height={0}
+            handle={
+                <ResizableColumnHandler
+                    onClick={(e) => {
+                        e.stopPropagation();
+                    }}
+                />
+            }
+            onResize={onResize}
+            draggableOpts={{enableUserSelectHack: false}}
+        >
+            <th {...restProps} />
+        </Resizable>
+    );
+};
+
+const ResizableTable = ({
+                            columns = [],
+                            excludedColumnKeys = [],
+                            columnMinWidth = 75,
+                            onColumnResize, // 새로운 prop 추가
+                            ...restProps
+                        }: TableProps<any> & {
+    excludedColumnKeys?: string[];
+    columnMinWidth?: number;
+    onColumnResize?: (newWidth: number) => void;
+}) => {
+    const [columnData, setColumnData] = useState<ColumnsType<any>>(
+        columns.map((c) => ({...c, ellipsis: true}))
+    );
+
+    const handleResize = (index: number) => (
+        _e: React.SyntheticEvent<Element, Event>, // 타입을 명시적으로 추가
+        {size}: ResizeCallbackData
+    ) => {
+        const newSizeWidth = Number(size.width);
+        if (newSizeWidth < columnMinWidth) return;
+
+        setColumnData((prevColumns) => {
+            const nextColumns = [...prevColumns];
+            const currentWidth = nextColumns[index].width ? Number(nextColumns[index].width) : columnMinWidth;
+            const deltaWidth = newSizeWidth - currentWidth; // 빼기 연산의 양변을 명시적으로 숫자로 처리
+            nextColumns[index] = {
+                ...nextColumns[index],
+                width: newSizeWidth,
+            };
+            if (onColumnResize) onColumnResize(deltaWidth); // 너비 변경 시 콜백 호출
+            return nextColumns;
+        });
+    };
+
+    const resizableColumns: any[] = columnData.map((col, index) => ({
+        ...col,
+        onHeaderCell: (column: ColumnType<any>) => ({
+            isResizable: !excludedColumnKeys.includes(column.key?.toString() ?? ""),
+            width: column.width || columnMinWidth,
+            onResize: handleResize(index),
+        }),
+    }));
+
+    return (
+        <Table
+            {...restProps}
+            columns={resizableColumns}
+            components={{
+                header: {
+                    cell: ResizableTitle,
+                },
+            }}
+        />
+    );
+};
+
+export default ResizableTable;
+
+```
