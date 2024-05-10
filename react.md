@@ -1,5 +1,8 @@
 # React
 
+## 4 React Tips to Instantly Improve Your Code
+<https://javascript.plainenglish.io/4-react-tips-to-instantly-improve-your-code-7456e028cfa3>
+
 ## Next.js 제대로 알기   
 <https://json.media/blog/proper_understading_of_nextjs>   
 
