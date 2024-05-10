@@ -8,6 +8,5 @@
 * HTML and CSS ([HTMLnCSS.md](./HTMLnCSS.md))   
 * JS and TS ([JSnTS.md](./JSnTS.md))     
 * 디자인 시스템 ([DS.md](./DS.md))     
-* 링크 모음 ([Links.md](./Links.md))   
-
-
+* 링크 모음 ([Links.md](./Links.md))
+* 구직 관련 ([job.md](./job.md))
