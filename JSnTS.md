@@ -1,5 +1,9 @@
 # JS
 
+## Learn JavaScript
+
+<https://web.dev/learn/javascript>
+
 ## 자바스크립트는 어떻게 약속을 지킬까?
 
 Promise, async/await, setTimeout이 브라우저에서 어떻게 동작하는지를 ECMAScript 표준 문서를 기반으로 추적하고 정리한 글이다.    
