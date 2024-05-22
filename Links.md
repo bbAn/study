@@ -36,5 +36,5 @@
 * 개인 블로그 - 승무원의 개발자되기 프로젝트   
 <https://mari-mo.tistory.com/>
 
-* 프런트엔드-백엔드 통신을 위한 BFF API 구축
+* 프런트엔드-백엔드 통신을 위한 BFF API 구축   
 <https://wiki.yowu.dev/ko/Knowledge-base/Backend/building-bff-api-for-frontend-backend-communication>
