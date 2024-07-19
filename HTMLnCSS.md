@@ -89,6 +89,9 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 ## clamp
 <https://developer.mozilla.org/en-US/docs/Web/CSS/clamp>
 
+## isolation
+<https://developer.mozilla.org/en-US/docs/Web/CSS/isolation>
+
 ### Fluid Typography
 <https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/>
 
