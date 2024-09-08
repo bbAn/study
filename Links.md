@@ -38,3 +38,6 @@
 
 * 프런트엔드-백엔드 통신을 위한 BFF API 구축   
 <https://wiki.yowu.dev/ko/Knowledge-base/Backend/building-bff-api-for-frontend-backend-communication>
+
+* 커밋 컨벤션 Commit Message Convention
+<https://thring.tistory.com/m/75>
