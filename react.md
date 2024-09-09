@@ -1,12 +1,12 @@
 # React
 
-## 4 React Tips to Instantly Improve Your Code
+## 1. 4 React Tips to Instantly Improve Your Code
 <https://javascript.plainenglish.io/4-react-tips-to-instantly-improve-your-code-7456e028cfa3>
 
-## Next.js 제대로 알기   
+## 2. Next.js 제대로 알기   
 <https://json.media/blog/proper_understading_of_nextjs>   
 
-## export의 방식 차이
+## 3. export의 방식 차이
 
 ```JS
 // 단순 export
@@ -36,36 +36,36 @@ import ExportComponent from "./ExportComponent.js"
 
 ```
 
-## 불변성
+## 4. 불변성
 
 <https://hsp0418.tistory.com/171>
 
 
-## useState함수형 업데이트   
+## 5. useState함수형 업데이트   
 
 <https://velog.io/@tjdgus0528/React-Native-5x048oii>
 
-## Build Your Own React   
+## 6. Build Your Own React   
 React를 처음부터 개발하는 과정을 다룸.   
 
 원문 <https://pomb.us/build-your-own-react/>   
 한글 번역 <https://bluewings.github.io/build-your-own-react/>
 
-## React의 구조와 JSX    
+## 7. React의 구조와 JSX    
 <https://gun-bro.tistory.com/4?category=911585>
 
-## [React.js]라우터   
+## 8. [React.js]라우터   
 <https://gun-bro.tistory.com/11>   
 <https://gongbu-ing.tistory.com/45>   
 
-## history.push()로 페이지 이동시 props 넘겨주기
+## 9. history.push()로 페이지 이동시 props 넘겨주기
 <https://velog.io/@dhlee91/this.props.history.push%EB%A1%9C-props-%EB%84%98%EA%B2%A8%EC%A3%BC%EA%B8%B0>   
 
-## [React] 로딩과 에러를 다루는 매뉴얼   
+## 10. [React] 로딩과 에러를 다루는 매뉴얼   
 <https://10000cow.tistory.com/entry/React-%EB%A1%9C%EB%94%A9%EA%B3%BC-%EC%97%90%EB%9F%AC%EB%A5%BC-%EB%8B%A4%EB%A3%A8%EB%8A%94-%EB%A7%A4%EB%89%B4%EC%96%BC>   
 
 
-## 클래스형 컴포넌트에서 input file과 버튼 연결하기 
+## 11. 클래스형 컴포넌트에서 input file과 버튼 연결하기 
 
 ```TS
 class AssetSummaryCard extends Component<Props, State> {
@@ -102,7 +102,7 @@ class AssetSummaryCard extends Component<Props, State> {
 }
 ```
 
-## JSON 데이터 값 중 특정부분html 태그로 감싸기
+## 12. JSON 데이터 값 중 특정부분html 태그로 감싸기
 ```TS
 
   const dataTableScenario = [
@@ -197,7 +197,7 @@ class AssetSummaryCard extends Component<Props, State> {
 </TableInfo>
 ```
 
-## 부모 컴포넌트에서 받은 props를 자식 컴포넌트 state에서 변경하고 다시 부모에게 넘겨주기
+## 13. 부모 컴포넌트에서 받은 props를 자식 컴포넌트 state에서 변경하고 다시 부모에게 넘겨주기
 부모 컴포넌트의 특정 영역을 클릭 했을 때의 상태를 자식 컴포넌트의 props로 넘겨   
 자식 컴포넌트에서 처리하는 state를 적용시킨 후 다시 부모 컴포넌트로 전달하는 방식   
 
@@ -359,7 +359,7 @@ class ChildComponent extends Component<Props, State> {
 
 ```
 
-## Redux를 사용해 헤더정보 가져오기
+## 14. Redux를 사용해 헤더정보 가져오기
 
 클래스형 컴포넌트로 작성된 Header에서 Redux props로 제공해 하위 컴포넌트에서 정보를 확인하는 방법   
 인데 Redux관련 다른 설정이 필요한데 우선 내가 사용했던 내용 위주로 정리
@@ -437,7 +437,7 @@ export default withRouter(
 );
 ```
 
-## Redux 사용하기 
+## 15. Redux 사용하기 
 하위 컴포넌트인 GeneralChart에서 budget-button을 클릭했을 때 상위 컴포넌트인 ScenarioManagement의 ContentsWrapper하위에    
 BudgetProposal 컴포넌트를 표시하도록 만들기 위해 Redux를 사용하여 상태를 관리하는 방법
 
@@ -723,10 +723,10 @@ const GeneralChart = ({ theme, data, typeChart, scenarioId }) => {
 export default withTheme(GeneralChart);
 ```
 
-## React에서 Icon 다루기 with Typescript
+## 16. React에서 Icon 다루기 with Typescript
 <https://blog.toycrane.xyz/react%EC%97%90%EC%84%9C-icon-%EB%8B%A4%EB%A3%A8%EA%B8%B0-59b6d987d61f>   
 
-## JavaScript의 Object를 Map으로 변환
+## 17. JavaScript의 Object를 Map으로 변환
 
 ```TS
 class CofInformation extends Component<Props, State> {
@@ -758,7 +758,7 @@ Object.entries(cofParametersObject)는 주어진 객체의 [key, value] 쌍을 �
 new Map()은 이 배열을 입력으로 받아 Map을 생성    
 이렇게 하면 객체가 Map으로 변환되어 상태에 저장
 
-## 현재 선택된 target 외 클릭시 상태 변경 
+## 18. 현재 선택된 target 외 클릭시 상태 변경 
 
 ```TS
 // 함수형
@@ -904,7 +904,7 @@ class YourComponent extends React.Component {
 }
 ```
 
-## ResizableTable 넓이 변경 시 다른 셀 너비는 변경되지 않고 테이블 전체 넓이가 넓어지도록
+## 19. ResizableTable 넓이 변경 시 다른 셀 너비는 변경되지 않고 테이블 전체 넓이가 넓어지도록
 
 ```TS
 // ListUser.tsx
