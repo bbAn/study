@@ -437,6 +437,292 @@ export default withRouter(
 );
 ```
 
+## Redux 사용하기 
+하위 컴포넌트인 GeneralChart에서 budget-button을 클릭했을 때 상위 컴포넌트인 ScenarioManagement의 ContentsWrapper하위에    
+BudgetProposal 컴포넌트를 표시하도록 만들기 위해 Redux를 사용하여 상태를 관리하는 방법
+
+### 1단계: Redux 설정
+npm install @reduxjs/toolkit react-redux
+
+### 2단계: 모달 상태 관리를 위한 Redux 슬라이스 생성
+BudgetProposal 컴포넌트의 가시성을 관리할 새로운 Redux 슬라이스를 생성   
+
+```TS
+// src/redux/slices/modalSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+
+export const modalSlice = createSlice({
+  name: 'modal',
+  initialState: {
+    isBudgetProposalVisible: false,
+  },
+  reducers: {
+    showBudgetProposal: (state) => {
+      state.isBudgetProposalVisible = true;
+    },
+    hideBudgetProposal: (state) => {
+      state.isBudgetProposalVisible = false;
+    },
+  },
+});
+
+export const { showBudgetProposal, hideBudgetProposal } = modalSlice.actions;
+
+export default modalSlice.reducer;
+
+```
+
+### 3단계: 스토어에 슬라이스 추가
+이 슬라이스를 Redux 스토어에 추가   
+
+```TS
+// src/redux/store.js
+import { configureStore } from '@reduxjs/toolkit';
+import modalReducer from './slices/modalSlice';
+
+export const store = configureStore({
+  reducer: {
+    modal: modalReducer,
+  },
+});
+
+export default store;
+
+```
+
+### 4단계: ScenarioManagement 컴포넌트에서 Redux 상태 사용
+ScenarioManagement 컴포넌트를 수정하여 Redux 상태에 따라 BudgetProposal 컴포넌트를 조건부로 렌더링
+
+```TS
+// src/components/ScenarioManagement.js
+import React from 'react';
+import { useSelector } from 'react-redux';
+import BudgetProposal from './scenarioDetail/BudgetProposal';
+
+// 기타 import...
+
+const ScenarioManagement = ({ theme }) => {
+  // 기타 hooks 및 로직...
+
+  const isBudgetProposalVisible = useSelector((state) => state.modal.isBudgetProposalVisible);
+
+  return (
+    <ContentsWrapper className="scenario-management overflow-hidden">
+      {/* 기타 컴포넌트 및 로직... */}
+      {isBudgetProposalVisible && (
+        <BudgetProposal
+          onCloseModal={() => setIsShowBudgetProposal(false)}
+          scenarioId={selectedScenarioItem.objId}
+          typeChart={typeChart}
+        />
+      )}
+    </ContentsWrapper>
+  );
+};
+
+export default withTheme(ScenarioManagement);
+
+```
+
+### 5단계: GeneralChart에서 모달 가시성 트리거
+GeneralChart에서 budget-button 클릭 시 BudgetProposal을 보여주기 위해 Redux 액션을 디스패치
+
+```TS
+// src/components/GeneralChart.js
+import React, { useMemo, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { showBudgetProposal } from '../../redux/slices/modalSlice'; // 경로에 맞게 수정
+import { Button } from 'antd';
+import HighchartsReact from 'highcharts-react-official';
+import Highcharts from 'highcharts';
+
+// 기타 import...
+
+const GeneralChart = ({ theme, data, typeChart, scenarioId }) => {
+  const dispatch = useDispatch();
+
+  // 기타 hooks 및 로직...
+
+  return (
+    <ChartContainer style={{ height: '30rem' }}>
+      {/* 기타 버튼 및 차트... */}
+      <ButtonDefaultSmall
+        className={"budget-button"}
+        onClick={() => {
+          dispatch(showBudgetProposal());
+        }}
+      >
+        {getTranslationByKey("I18N_BUDGET_CHANGES")}
+      </ButtonDefaultSmall>
+    </ChartContainer>
+  );
+};
+
+export default withTheme(GeneralChart);
+
+```
+
+### 6단계: Redux를 앱에 제공
+앱의 메인 진입 파일에서 Redux provider로 애플리케이션 감쌈
+
+```TS
+// src/index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import App from './App';
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+```
+
+### * store.ts 파일이 이미 존재하는 경우
+modalSlice를 추가하여 기존의 설정에 통합하는 방식으로 진행
+
+#### 1단계: modalSlice 추가
+
+```TS
+// src/redux/slices/modalSlice.ts
+import { createSlice } from '@reduxjs/toolkit';
+
+export const modalSlice = createSlice({
+  name: 'modal',
+  initialState: {
+    isBudgetProposalVisible: false,
+  },
+  reducers: {
+    showBudgetProposal: (state) => {
+      state.isBudgetProposalVisible = true;
+    },
+    hideBudgetProposal: (state) => {
+      state.isBudgetProposalVisible = false;
+    },
+  },
+});
+
+export const { showBudgetProposal, hideBudgetProposal } = modalSlice.actions;
+
+export default modalSlice.reducer;
+```
+
+#### 2단계: store.ts 파일에 modalSlice 통합
+store.ts 파일에 modalSlice를 통합   
+기존의 rootReducer에 새로운 modal 리듀서를 추가   
+
+```TS
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
+import { combineReducers, applyMiddleware, createStore } from "redux";
+import headerReducer, { LevelState } from "../modules/header/header.reducer";
+import userReducer, { UserInfo } from "../modules/user/user.reducers";
+import layoutReducer, { LayoutState } from "../modules/layoutState/layout.reducers";
+import modalReducer from "../redux/slices/modalSlice";  // 새로운 slice를 import
+
+const rootReducer = combineReducers({
+    header: headerReducer,
+    users: userReducer,
+    layout: layoutReducer,
+    modal: modalReducer,  // 여기에서 modal 리듀서를 추가
+});
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+export default store;
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = {
+    header: LevelState;
+    users?: UserInfo;
+    layout?: LayoutState;
+    modal: ReturnType<typeof modalReducer>;  // RootState 타입에 modal 추가
+}
+
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;
+export type AppThunk<ReturnType = void> = ThunkAction<
+    ReturnType,
+    RootState,
+    unknown,
+    Action<string>
+>;
+```
+
+#### 3단계: ScenarioManagement에서 Redux 상태 사용c
+Redux 상태를 활용하여 ScenarioManagement 컴포넌트에서 BudgetProposal 컴포넌트를 표시할 수 있도록 변경
+
+```TS
+// src/components/ScenarioManagement.tsx
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';  // RootState 타입 import
+import BudgetProposal from './scenarioDetail/BudgetProposal';
+
+// 기타 import...
+
+const ScenarioManagement = ({ theme }) => {
+  // 기타 hooks 및 로직...
+
+  const isBudgetProposalVisible = useSelector((state: RootState) => state.modal.isBudgetProposalVisible);
+
+  return (
+    <ContentsWrapper className="scenario-management overflow-hidden">
+      {/* 기타 컴포넌트 및 로직... */}
+      {isBudgetProposalVisible && (
+        <BudgetProposal
+          onCloseModal={() => setIsShowBudgetProposal(false)}
+          scenarioId={selectedScenarioItem.objId}
+          typeChart={typeChart}
+        />
+      )}
+    </ContentsWrapper>
+  );
+};
+
+export default withTheme(ScenarioManagement);
+```
+
+#### 4단계: GeneralChart에서 Redux 상태 변경 트리거
+GeneralChart에서 budget-button 클릭 시 showBudgetProposal 액션을 디스패치하여 BudgetProposal을 표시
+
+```TS
+// src/components/GeneralChart.tsx
+import React, { useMemo, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { showBudgetProposal } from '../redux/slices/modalSlice';  // 액션 가져오기
+import { Button } from 'antd';
+import HighchartsReact from 'highcharts-react-official';
+import Highcharts from 'highcharts';
+
+// 기타 import...
+
+const GeneralChart = ({ theme, data, typeChart, scenarioId }) => {
+  const dispatch = useDispatch();
+
+  // 기타 hooks 및 로직...
+
+  return (
+    <ChartContainer style={{ height: '30rem' }}>
+      {/* 기타 버튼 및 차트... */}
+      <ButtonDefaultSmall
+        className={"budget-button"}
+        onClick={() => {
+          dispatch(showBudgetProposal());  // 버튼 클릭 시 액션 디스패치
+        }}
+      >
+        {getTranslationByKey("I18N_BUDGET_CHANGES")}
+      </ButtonDefaultSmall>
+    </ChartContainer>
+  );
+};
+
+export default withTheme(GeneralChart);
+```
+
 ## React에서 Icon 다루기 with Typescript
 <https://blog.toycrane.xyz/react%EC%97%90%EC%84%9C-icon-%EB%8B%A4%EB%A3%A8%EA%B8%B0-59b6d987d61f>   
 
