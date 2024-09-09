@@ -1,15 +1,15 @@
-# HTML
+# - HTML
 
-## </> htmx   
+## 1. </> htmx   
 <https://htmx.org/>   
 
-## 11 HTML best practices for login & sign-up forms
+## 2. 11 HTML best practices for login & sign-up forms
 <https://evilmartians.com/chronicles/html-best-practices-for-login-and-signup-forms>   
 
 
-# CSS
+# - CSS
 
-## CSS Transform 분할   
+## 1. CSS Transform 분할   
 CSS의 transform 속성은 모든 속성을 문자열로 나열해야 하기 때문에 수정이 번잡하고 어려웠다.   
 이제 3개의 브라우저에서 모두 transform에 인라인으로 들어가던 속성들이 각각의 CSS 속성으로 지원된다.      
 
@@ -28,7 +28,7 @@ To-Be
   scale: 2;
 }
 ```
-## The truth about CSS selector performance
+## 2. The truth about CSS selector performance
 
 브라우저 엔진은 웹 페이지 내 특정 영역에 대한 변화로 인해 새로운 DOM 트리가 업데이트되면,    
 현재 페이지에 적용된 CSS stylesheet를 통해 스타일을 적용하며, 스타일과 DOM 트리를 매칭하는 것을 style recalculation이라 부른다.
@@ -43,65 +43,65 @@ Main 섹션에서 Recalculate Style 항목으로 수행된 작업에서 셀렉�
 
 
 
-## Rem 그리고 Em, 언제 써야 할까   
+## 3. Rem 그리고 Em, 언제 써야 할까   
 <https://webdesign.tutsplus.com/ko/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984>
 
-## @property   
+## 4. @property   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/@property>
 
-## place-content
+## 5. place-content
 <https://developer.mozilla.org/en-US/docs/Web/CSS/place-content>
 
-## How to Create CSS Conic Gradients for Pie Charts and More   
+## 6. How to Create CSS Conic Gradients for Pie Charts and More   
 <https://www.sitepoint.com/create-css-conic-gradients-pie-charts/>   
 
-## CSS inset   
+## 7. CSS inset   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/inset>   
 
-## CSS inset-block   
+## 8. CSS inset-block   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/inset-block>   
 
-## z-index: auto   
+## 9. z-index: auto   
 
-## CSS_Container_Queries   
+## 10. CSS_Container_Queries   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Container_Queries>    
 
-## :indeterminate
+## 11. :indeterminate
 <https://developer.mozilla.org/en-US/docs/Web/CSS/:indeterminate>
 
-## :focus-visible
+## 12. :focus-visible
 <https://hohoya33.tistory.com/93>   
 <https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible>  
 
-## :focus-within
+## 13. :focus-within
 <https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within>
 <https://developer.mozilla.org/ko/docs/Web/CSS/:focus-within>
 
-## env
+## 14. env
 <https://developer.mozilla.org/en-US/docs/Web/CSS/env>
 
-## backdrop-filter
+## 15. backdrop-filter
 <https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter>
 
-## :placeholder-shown
+## 16. :placeholder-shown
 <https://developer.mozilla.org/en-US/docs/Web/CSS/:placeholder-shown>
 
-## clamp
+## 17. clamp
 <https://developer.mozilla.org/en-US/docs/Web/CSS/clamp>
 
-## isolation
+## 18. isolation
 <https://developer.mozilla.org/en-US/docs/Web/CSS/isolation>
 
-### Fluid Typography
+## 19. Fluid Typography
 <https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/>
 
-## CSS container queries
+## 20. CSS container queries
 <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries>
 
-## prefers-reduced-motion
+## 21. prefers-reduced-motion
 <https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries>
 
-## styled-components에서 props 사용하여 스타일값 지정하기
+## 22. styled-components에서 props 사용하여 스타일값 지정하기
 ```TS
 
 const PentagonContainer = styled.div<{ width?: number; height?: number }>`
@@ -186,7 +186,7 @@ export const InputRadio = styled.input.attrs({
 
 ```
 
-## Inline conditionals in CSS?
+## 23. Inline conditionals in CSS?
 <https://lea.verou.me/blog/2024/css-conditionals/>   
 CSS WG은 24년 6월 회의에서 논의를 통해 인라인 if() 함수 문법 추가에 대한 합의를 이뤘다.   
 합의가 이뤄지긴 했지만, 표준 명세에 도달하기 까지는 긴 과정(낙관적 관점에서도 2년여)이 예상된다.   
