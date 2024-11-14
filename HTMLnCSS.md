@@ -192,3 +192,7 @@ CSS WG은 24년 6월 회의에서 논의를 통해 인라인 if() 함수 문법 
 합의가 이뤄지긴 했지만, 표준 명세에 도달하기 까지는 긴 과정(낙관적 관점에서도 2년여)이 예상된다.   
 하지만 다양한 사용성을 제공할 수 있다는 측면에서 기대되는 명세다.   
 명세에 대한 자세한 논의는 제안서를 통해 확인할 수 있다.  
+
+## 24. Vanilla Extract <https://vanilla-extract.style/> 
+Vanilla Extract란 무엇인가   
+<https://velog.io/@keumky1/Vanilla-Extract%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80>
