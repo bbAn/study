@@ -1085,3 +1085,38 @@ const ResizableTable = ({
 export default ResizableTable;
 
 ```
+
+## 20. 말줄임 여부 확인해서 툴팁(antd) 적용
+
+```
+  const EllipsisTooltip = ({ content }: { content: string }) => {
+    const textRef = useRef<HTMLDivElement>(null);
+    const [isEllipsis, setIsEllipsis] = useState(false);
+
+    useEffect(() => {
+      if (textRef.current) {
+        setIsEllipsis(textRef.current.scrollWidth > textRef.current.clientWidth);
+      }
+    }, [content]);
+
+    return (
+      <Tooltip title={isEllipsis ? content : null} placement="topLeft">
+        <div
+          ref={textRef}
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
+          {content}
+        </div>
+      </Tooltip>
+    );
+  };
+
+...
+
+ <EllipsisTooltip content={} />
+
+```
