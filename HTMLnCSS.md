@@ -196,3 +196,10 @@ CSS WG은 24년 6월 회의에서 논의를 통해 인라인 if() 함수 문법 
 ## 24. Vanilla Extract <https://vanilla-extract.style/> 
 Vanilla Extract란 무엇인가   
 <https://velog.io/@keumky1/Vanilla-Extract%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80>
+
+## 25. 
+```TS
+&:nth-child(n+${(props) => props.substationIndex}) .ant-tree-indent-unit:first-of-type {
+    height: 0;
+}
+```
