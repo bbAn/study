@@ -1140,3 +1140,8 @@ export default ResizableTable;
         setActiveRowKey(record.accountId);
     };
 ```
+
+## 31. 
+```TS
+<span dangerouslySetInnerHTML={{__html: svgContent}}>
+```
