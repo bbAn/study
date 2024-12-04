@@ -1088,7 +1088,7 @@ export default ResizableTable;
 
 ## 20. 말줄임 여부 확인해서 툴팁(antd) 적용
 
-```
+```TS
   const EllipsisTooltip = ({ content }: { content: string }) => {
     const textRef = useRef<HTMLDivElement>(null);
     const [isEllipsis, setIsEllipsis] = useState(false);
@@ -1119,4 +1119,24 @@ export default ResizableTable;
 
  <EllipsisTooltip content={} />
 
+```
+
+
+## 30.
+```TS
+    const handleRowClick = (record: any, e: React.MouseEvent<HTMLTableRowElement>) => {
+        // e.target을 Element로 타입 선언하여 closest 메서드 사용 가능하게 함
+        const target = e.target as Element; // 또는 HTMLElement로 선언해도 괜찮습니다.
+
+        // 클릭된 요소와 가장 가까운 체크박스 또는 .ant-checkbox-inner 요소를 찾습니다.
+        const isCheckboxClick = target.closest('.ant-checkbox-wrapper, .ant-checkbox, .ant-checkbox-inner, input[type="checkbox"]');
+
+        // 체크박스 클릭 또는 이미 선택된 행을 클릭한 경우, 아무것도 하지 않습니다.
+        if (isCheckboxClick || activeRowKey === record.accountId) {
+            return;
+        }
+
+        // 그렇지 않은 경우, activeRowKey를 업데이트하여 배경색을 변경합니다.
+        setActiveRowKey(record.accountId);
+    };
 ```
