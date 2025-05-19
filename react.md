@@ -1145,3 +1145,6 @@ export default ResizableTable;
 ```TS
 <span dangerouslySetInnerHTML={{__html: svgContent}}>
 ```
+
+## 32. 한글 입력 후 Enter시 메세지가 한 번 더 보내지는 이유
+<https://velog.io/@jackson5272/%EC%98%A4%EB%A5%98%ED%95%B4%EA%B2%B0%EA%B8%B0-%ED%95%9C%EA%B8%80-%EC%9E%85%EB%A0%A5-%ED%9B%84-Enter%EC%8B%9C-%EC%9D%B4%EB%B2%A4%ED%8A%B8%EA%B0%80-%ED%95%9C-%EB%B2%88-%EB%8D%94-%EB%B3%B4%EB%82%B4%EC%A7%80%EB%8A%94-%EC%9D%B4%EC%9C%A0>
