@@ -31,7 +31,8 @@
 
 * 개인 블로그   
 <https://jintrue.tistory.com/>   
-<https://ha-young.github.io/> 
+<https://ha-young.github.io/>
+<https://www.syw.kr/>
 
 * 개인 블로그 - 승무원의 개발자되기 프로젝트   
 <https://mari-mo.tistory.com/>
