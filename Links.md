@@ -43,7 +43,7 @@
 * 커밋 컨벤션 Commit Message Convention  
 <https://thring.tistory.com/m/75>
 
-* UX Engineer 
+* UX Engineer  
 <https://toss.im/career/job-detail?job_id=4313193003&company=%ED%86%A0%EC%8A%A4&detailedPosition=Design%20System>
 
 * 토스가 모바일 접근성에 진심인 이유는?   
