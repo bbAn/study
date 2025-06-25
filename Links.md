@@ -51,3 +51,6 @@
 
 * 토스가 새롭게 상상하는 접근성 UX   
 <https://toss.im/career/article/35281>
+
+* Apple Human Interface Guidelines   
+<https://developer.apple.com/design/human-interface-guidelines/materials>
