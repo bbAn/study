@@ -1151,3 +1151,6 @@ export default ResizableTable;
 
 ## 33. React Query(Tanstack Query)
 <https://tanstack.com/query/v4?from=reactQueryV3&original=https%3A%2F%2Freact-query-v3.tanstack.com%2F>
+
+## 34. 프론트엔드 개발자를 위한 5가지 스크롤 복구 시나리오와 실전 코드 팁 
+<https://oliveyoung.tech/2025-07-30/scroll-restoration/>  
