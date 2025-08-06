@@ -14,3 +14,6 @@
 ## shadcn UI
 <https://ui.shadcn.com/>   
 <https://pyjun01.github.io/v/shadcn-ui/>
+
+## Figma MCP로 프론트엔드 컴포넌트 자동 생성하기   
+<https://techtopic.skplanet.com/figmamcp/> 
