@@ -1154,3 +1154,7 @@ export default ResizableTable;
 
 ## 34. 프론트엔드 개발자를 위한 5가지 스크롤 복구 시나리오와 실전 코드 팁 
 <https://oliveyoung.tech/2025-07-30/scroll-restoration/>  
+
+## 35. Optimistic Updates
+<https://tanstack.com/query/v4/docs/framework/react/guides/optimistic-updates>   
+
