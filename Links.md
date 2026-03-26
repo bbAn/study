@@ -1,3 +1,6 @@
+* Claude Code 사용하기
+<https://code.claude.com/docs/ko/best-practices>
+
 * Toast UI   
 <https://ui.toast.com/>
 
